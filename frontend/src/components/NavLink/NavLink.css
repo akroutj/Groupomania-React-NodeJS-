@@ -1,0 +1,22 @@
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.navlink {
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    padding-left: 40px;
+    transition: 300ms ;
+    
+}
+
+.navlink:hover {
+    transform: scale(1.05);
+
+}
+

@@ -1,0 +1,72 @@
+
+
+.profil-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-top: 30px;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 5px 10px gray;
+}
+.identity-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    contain: content
+}
+
+.profil-photo-card {
+    max-width: 200px;
+    max-height: 200px;
+    padding: 20px;
+    
+}
+
+.profil-photo {
+    max-height: 200px;
+    border-radius: 50%;
+}
+
+.info-card {
+    width: 100%;
+    background-color: pink;   
+    padding: 20px;
+}
+
+.profil-main-card {
+   width: 100%;
+   border-radius: 0px 0px 20px 20px;
+   font-size: 1.2rem;
+}
+
+.profil-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+
+.profil-buttons button {
+    width: 200px;
+    background-color: #4E5166;
+    border-radius: 12px;
+    border: 0;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    text-align: center;
+    margin-top: 20px;
+    transition: 300ms;
+}
+
+.profil-buttons button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 2px 15px grey;
+}
