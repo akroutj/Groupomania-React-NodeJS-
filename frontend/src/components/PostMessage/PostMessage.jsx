@@ -10,8 +10,12 @@ function PostMessage(props) {
     const sendMessage = (e) => {
         e.preventDefault()
         const formData = new FormData()
-        formData.append('image', selectImage[0])
+        formData.append('image', selectImage !== null ? selectImage[0] : null)
         formData.append('message', message)
+        formData.append(
+            'userId',
+            JSON.parse(localStorage.getItem('userData')).userId
+        )
 
         const requestOptions = {
             method: 'POST',

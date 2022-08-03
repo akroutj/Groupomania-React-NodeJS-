@@ -16,6 +16,7 @@ function Forum(props) {
                     messages={props.messages}
                     users={props.users}
                     myProfil={props.myProfil}
+                    comments={props.comments}
                 />
             </div>
         </>

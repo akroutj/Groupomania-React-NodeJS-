@@ -16,10 +16,11 @@ exports.getAllMessages = (req, res, next) => {
 
 // Logique metier - Création d'un message
 exports.createMessage = (req, res) => {
+    console.log(req.file)
     const messageObject = req.body.message;
     const message = new Message({
         ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        imageUrl: req.file !== undefined ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
     });
     message.save()
         .then(() => res.status(201).json({ message: 'Votre post est en ligne !' }))

@@ -1,4 +1,5 @@
 const Comment = require("../models/Comment");
+const Message = require('../models/Message');
 const jwt = require('jsonwebtoken');
 
 // logique métier : lire tous les commentaires
@@ -8,12 +9,13 @@ exports.getAllComments = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-
 // logique métier : créer un commentaire
 exports.createComment = (req, res, next) => {
-  const commentObject = req.body.comment;
+  console.log(req.body)
   const comment = new Comment({
-    ...commentObject
+    commentary: req.body.comment,
+    userId: req.body.userId,
+    messageId: req.body.messageId
   });
   // Enregistrement de l'objet commentaire dans la base de données
   comment.save()

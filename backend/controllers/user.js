@@ -11,7 +11,7 @@ exports.signup = (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 password: hash,
-                job: req.body.job
+                job: req.body.job,
             });
             user.save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
@@ -38,8 +38,10 @@ exports.login = (req, res) => {
                             { userId: user._id },
                             'RANDOM_TOKEN_SECRET',
                             { expiresIn: '24h' }
-                        )
+                            
+                        ) 
                     });
+                    
                 })
                 .catch(error => res.status(500).json({ error }));
         })

@@ -16,6 +16,7 @@ const App = () => {
     const [users, setUsers] = useState([])
     const [messages, setMessages] = useState([])
     const [myProfil, setMyProfil] = useState([])
+    const [comments, setComments] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -42,9 +43,22 @@ const App = () => {
                 setMyProfil(data)
                 setIsLoaded(false)
             })
+        fetch(
+            //Récuperation des commentaires
+            'http://localhost:3100/api/comments',
+            requestOptions
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                setComments(data)
+                setIsLoaded(false)
+            })
         setIsLoaded(!isLoaded)
     }, [])
 
+    // if (!isLoaded) {
+    //     return <div />
+    // }
     return (
         <BrowserRouter>
             <Routes>
@@ -57,6 +71,7 @@ const App = () => {
                             users={users}
                             messages={messages}
                             myProfil={myProfil}
+                            comments={comments}
                         />
                     }
                 />

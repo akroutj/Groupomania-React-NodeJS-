@@ -5,20 +5,23 @@ import { FaBars, FaHeart } from 'react-icons/fa'
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
 
-    const sendCommentary = (e) => {
+    const sendCommentary = (e, message) => {
         e.preventDefault()
-        const formData = new FormData()
-        formData.append('commentary', commentary)
-        console.log(commentary)
+        const formData = {
+            commentary: commentary,
+            userId: JSON.parse(localStorage.getItem('userData')).userId,
+            messageId: message._id,
+        }
 
         const requestOptions = {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization:
                     'Bearer ' +
                     JSON.parse(localStorage.getItem('userData')).token,
             },
-            body: formData,
+            body: JSON.stringify(formData),
         }
 
         fetch('http://localhost:3100/api/comments', requestOptions)
@@ -63,7 +66,11 @@ const MessagesList = (props) => {
                         <div className="image-cont">
                             <img
                                 className="card-image"
-                                src={message.imageUrl}
+                                src={
+                                    message.imageUrl
+                                        ? message.imageUrl
+                                        : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.G4dvQDdiYY8L202JaqMbHgHaHa%26pid%3DApi&f=1'
+                                }
                                 alt="Teamphoto"
                             />
                         </div>
@@ -74,7 +81,7 @@ const MessagesList = (props) => {
                         <hr className="line"></hr>
 
                         <form
-                            onSubmit={sendCommentary}
+                            onSubmit={(e) => sendCommentary(e, message)}
                             className="card-commentary"
                         >
                             <div className="identity-card">
