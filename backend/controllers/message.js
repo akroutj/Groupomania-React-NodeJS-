@@ -8,7 +8,7 @@ const fs = require('fs');
 
 // Logique metier - Récupération de toutes les messages
 exports.getAllMessages = (req, res, next) => {
-    Message.find()
+    Message.find().sort({userId: -1})
         .then(messages => res.status(200).json(messages))
         .catch(error => res.status(400).json({ error }));
 };
@@ -16,11 +16,12 @@ exports.getAllMessages = (req, res, next) => {
 
 // Logique metier - Création d'un message
 exports.createMessage = (req, res) => {
-    console.log(req.file)
-    const messageObject = req.body.message;
+    // const messageObject = req.body.message;
+
     const message = new Message({
         ...req.body,
         imageUrl: req.file !== undefined ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null,
+      
     });
     message.save()
         .then(() => res.status(201).json({ message: 'Votre post est en ligne !' }))

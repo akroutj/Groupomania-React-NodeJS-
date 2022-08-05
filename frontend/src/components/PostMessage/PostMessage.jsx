@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 // import GetMyProfil from '../Profil/GetMyProfil'
+import { FaCamera } from 'react-icons/fa'
 
 import './PostMessage.css'
 
@@ -36,11 +37,11 @@ function PostMessage(props) {
     return (
         <>
             <div className="new-message-container">
-                <div className="card-header">
+                <div className="new-card-header">
                     <div className="user-photo">
                         <img
                             className="identity-photo"
-                            src="https://dev.identite.photos/wp-content/uploads/2018/01/photo-identit%C3%A9-pr%C3%A9fectures-300x300.jpg"
+                            src={props.myProfil.profilImage}
                             alt=""
                         />
                     </div>
@@ -52,13 +53,18 @@ function PostMessage(props) {
 
                 <form onSubmit={sendMessage} className="post-message-form">
                     <div className="post-image-container">
-                        <input
-                            type="file"
-                            name="myImage"
-                            onChange={(e) => {
-                                setSelectImage(e.target.files)
-                            }}
-                        />
+                        <label htmlFor="file" className="file-image">
+                            <input
+                                type="file"
+                                id="file"
+                                name="myImage"
+                                onChange={(e) => {
+                                    setSelectImage(e.target.files)
+                                }}
+                            />
+                            Selectionnez une photo
+                            <FaCamera className="camera-icon" />
+                        </label>
                     </div>
 
                     <div className="post-comments-area">
@@ -66,23 +72,18 @@ function PostMessage(props) {
                             className="text-area-message"
                             htmlFor="message"
                         ></label>
-                        <input
+                        <textarea
                             type="text"
                             className="message"
                             name="message"
                             id="message"
-                            rows="3"
+                            rows="2"
                             placeholder="Ecrire un commentaire..."
                             onChange={(e) => setMessage(e.target.value)}
-                        ></input>
+                        ></textarea>
                     </div>
 
                     <div className="publish-post-bouton">
-                        <input
-                            type="submit"
-                            className="post-button"
-                            value="Photo"
-                        />
                         <input
                             type="submit"
                             className="post-button"

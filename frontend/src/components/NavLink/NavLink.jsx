@@ -16,7 +16,6 @@ function NavLink() {
                 <Link className="navlink" to="/Users">
                     Utilisateurs
                 </Link>
-
                 <Link className="navlink" to="/">
                     <FaPowerOff className="profil-icon" />
                 </Link>

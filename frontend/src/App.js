@@ -57,8 +57,8 @@ const App = () => {
     }, [])
 
     // if (!isLoaded) {
-    //     return <div />
-    // }
+    //     return <div>Veuillez Patientez...</div>
+    // } else {
     return (
         <BrowserRouter>
             <Routes>

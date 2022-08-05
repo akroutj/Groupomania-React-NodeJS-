@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
     name: { type: String, require: true },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
-    job: { type: String, require: true }
+    job: { type: String, require: true },
+    profilImage: { type: String, require: true }
 });
 
 // Application du plugin sur le userShema

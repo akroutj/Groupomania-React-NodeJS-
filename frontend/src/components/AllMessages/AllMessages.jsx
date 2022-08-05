@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
-import { FaBars, FaHeart } from 'react-icons/fa'
+import { FaBars, FaHeart, FaArrowCircleRight } from 'react-icons/fa'
 
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
@@ -37,7 +37,7 @@ const MessagesList = (props) => {
                     <div key={index} className="post-card">
                         <div className="card-header" key={message._id}>
                             <div className="identity-card">
-                                <div className="user-name">
+                                <h3 className="user-name">
                                     {props.users.length !== 0 &&
                                         props.users.filter(
                                             (user) =>
@@ -47,9 +47,9 @@ const MessagesList = (props) => {
                                             (user) =>
                                                 user._id === message.userId
                                         )[0].name}
-                                </div>
+                                </h3>
 
-                                <div className="user-job">
+                                <p className="user-job">
                                     {props.users.length !== 0 &&
                                         props.users.filter(
                                             (user) =>
@@ -59,21 +59,20 @@ const MessagesList = (props) => {
                                             (user) =>
                                                 user._id === message.userId
                                         )[0].job}
-                                </div>
+                                </p>
                             </div>
+
                             <FaBars className="setting-card" />
                         </div>
-                        <div className="image-cont">
-                            <img
-                                className="card-image"
-                                src={
-                                    message.imageUrl
-                                        ? message.imageUrl
-                                        : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.G4dvQDdiYY8L202JaqMbHgHaHa%26pid%3DApi&f=1'
-                                }
-                                alt="Teamphoto"
-                            />
-                        </div>
+                        {message?.imageUrl && (
+                            <div className="image-cont">
+                                <img
+                                    className="card-image"
+                                    src={message.imageUrl}
+                                    alt="Teamphoto"
+                                />
+                            </div>
+                        )}
                         <div className="card-description">
                             <p>{message.message}</p>
                             <FaHeart />
@@ -88,15 +87,14 @@ const MessagesList = (props) => {
                                 <div className="user-photo-commentary">
                                     <img
                                         className="identity-photo-commentary"
-                                        src="https://www.zdnet.com/a/hub/i/r/2021/04/23/b19e9f94-9b4b-4bcf-8ffb-1a37ea452be2/resize/370xauto/3bef135b5d635f53c53f2d54e1e41b23/image.jpg"
-                                        alt=""
+                                        src={props.myProfil.profilImage}
+                                        alt="visage de la personne"
                                     />
                                 </div>
                                 <div className="commentary-info-card">
                                     <h3 className="commentary-name-user">
                                         {props.myProfil.name}
                                     </h3>
-                                    <p>{props.myProfil.job}</p>
                                 </div>
                             </div>
 
@@ -111,10 +109,10 @@ const MessagesList = (props) => {
                                         setCommentary(e.target.value)
                                     }
                                 ></input>
-                                <button
-                                    className="submit"
+                                <FaArrowCircleRight
+                                    className="submit-icon"
                                     type="submit"
-                                ></button>
+                                />
                             </div>
                         </form>
                     </div>

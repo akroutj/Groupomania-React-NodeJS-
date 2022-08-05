@@ -12,7 +12,11 @@ exports.signup = (req, res) => {
                 email: req.body.email,
                 password: hash,
                 job: req.body.job,
-            });
+                profilImage: "https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+            }
+                
+            );
+
             user.save()
                 .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
                 .catch(error => res.status(400).json({ error }));

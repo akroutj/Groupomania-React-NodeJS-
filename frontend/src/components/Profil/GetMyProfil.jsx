@@ -1,6 +1,6 @@
 import React from 'react'
 import './GetMyProfil.css'
-import ProfilPhoto from '../../../src/assets/red-logo-single.png'
+// import ProfilPhoto from '../../../src/assets/red-logo-single.png'
 
 const GetMyProfil = (props) => {
     return (
@@ -9,7 +9,7 @@ const GetMyProfil = (props) => {
                 <div className="profil-photo-card">
                     <img
                         className="profil-photo"
-                        src={ProfilPhoto}
+                        src={props.myProfil.profilImage}
                         alt="profil"
                     />
                 </div>

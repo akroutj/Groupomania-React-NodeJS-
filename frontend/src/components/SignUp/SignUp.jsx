@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { FaLock, FaEnvelope, FaUserCircle, FaAddressCard } from 'react-icons/fa'
 import logo from '../../assets/white-logo-single.png'
+//import logo from '../../'
 import './SignUp.css'
 
 function SignUpComp() {
