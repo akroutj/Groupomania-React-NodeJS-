@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
 import { FaBars, FaHeart, FaArrowCircleRight } from 'react-icons/fa'
+import CommentsList from '../Comments/CommentsList'
 
 const MessagesList = (props) => {
+    console.log(props.comments)
     const [commentary, setCommentary] = useState([])
 
     const sendCommentary = (e, message) => {
@@ -27,6 +29,7 @@ const MessagesList = (props) => {
         fetch('http://localhost:3100/api/comments', requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data))
+
             .catch((error) => console.log(error.message))
     }
 
@@ -78,6 +81,12 @@ const MessagesList = (props) => {
                             <FaHeart />
                         </div>
                         <hr className="line"></hr>
+
+                        {/* COMMENTS */}
+                        <CommentsList
+                            messageId={message._id}
+                            commentsData={props.comments}
+                        />
 
                         <form
                             onSubmit={(e) => sendCommentary(e, message)}

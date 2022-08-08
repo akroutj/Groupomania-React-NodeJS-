@@ -43,16 +43,6 @@ const App = () => {
                 setMyProfil(data)
                 setIsLoaded(false)
             })
-        fetch(
-            //Récuperation des commentaires
-            'http://localhost:3100/api/comments',
-            requestOptions
-        )
-            .then((res) => res.json())
-            .then((data) => {
-                setComments(data)
-                setIsLoaded(false)
-            })
         setIsLoaded(!isLoaded)
     }, [])
 

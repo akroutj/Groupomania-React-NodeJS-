@@ -42,7 +42,7 @@ function PostMessage(props) {
                         <img
                             className="identity-photo"
                             src={props.myProfil.profilImage}
-                            alt=""
+                            alt="Visage de la personne"
                         />
                     </div>
                     <div className="name-card">

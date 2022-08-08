@@ -9,11 +9,19 @@ exports.getAllComments = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+exports.getCommentsByMessage = (req, res, next) => {
+  Comment.find({
+   "messageId": req.params.articleId
+ })
+    .then(messages => res.status(200).json(messages))
+    .catch(error => res.status(400).json({ error }));
+  };
+
 // logique métier : créer un commentaire
 exports.createComment = (req, res, next) => {
   console.log(req.body)
   const comment = new Comment({
-    commentary: req.body.comment,
+    commentary: req.body.commentary,
     userId: req.body.userId,
     messageId: req.body.messageId
   });
