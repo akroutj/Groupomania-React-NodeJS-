@@ -4,15 +4,14 @@ import { FaBars, FaHeart, FaArrowCircleRight } from 'react-icons/fa'
 import CommentsList from '../Comments/CommentsList'
 
 const MessagesList = (props) => {
-    console.log(props.comments)
     const [commentary, setCommentary] = useState([])
 
     const sendCommentary = (e, message) => {
-        e.preventDefault()
         const formData = {
             commentary: commentary,
             userId: JSON.parse(localStorage.getItem('userData')).userId,
             messageId: message._id,
+            name: props.myProfil.name,
         }
 
         const requestOptions = {
@@ -40,6 +39,18 @@ const MessagesList = (props) => {
                     <div key={index} className="post-card">
                         <div className="card-header" key={message._id}>
                             <div className="identity-card">
+                                <div>
+                                    <img
+                                        className="identity-photo"
+                                        src={
+                                            props.myProfil.profilImage !==
+                                            undefined
+                                                ? props.myProfil.profilImage
+                                                : require('../../../src/assets/red-logo-single.png')
+                                        }
+                                        alt="Visage de la personne"
+                                    />
+                                </div>
                                 <h3 className="user-name">
                                     {props.users.length !== 0 &&
                                         props.users.filter(
@@ -64,7 +75,6 @@ const MessagesList = (props) => {
                                         )[0].job}
                                 </p>
                             </div>
-
                             <FaBars className="setting-card" />
                         </div>
                         {message?.imageUrl && (
@@ -96,7 +106,12 @@ const MessagesList = (props) => {
                                 <div className="user-photo-commentary">
                                     <img
                                         className="identity-photo-commentary"
-                                        src={props.myProfil.profilImage}
+                                        src={
+                                            props.myProfil.profilImage !==
+                                            undefined
+                                                ? props.myProfil.profilImage
+                                                : require('../../../src/assets/red-logo-single.png')
+                                        }
                                         alt="visage de la personne"
                                     />
                                 </div>

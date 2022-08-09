@@ -1,9 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './NavLink.css'
 import { FaPowerOff } from 'react-icons/fa'
 
 function NavLink() {
+    const navigate = useNavigate()
+    let user = 'Bearer' + JSON.parse(localStorage.getItem('userData'))
+    function Logout() {
+        localStorage.clear(user)
+        navigate('/')
+    }
+
     return (
         <>
             <div className="navigation">
@@ -16,9 +23,8 @@ function NavLink() {
                 <Link className="navlink" to="/Users">
                     Utilisateurs
                 </Link>
-                <Link className="navlink" to="/">
-                    <FaPowerOff className="profil-icon" />
-                </Link>
+
+                <FaPowerOff onClick={Logout} className="profil-icon" />
             </div>
         </>
     )

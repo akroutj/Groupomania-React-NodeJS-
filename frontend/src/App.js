@@ -16,7 +16,6 @@ const App = () => {
     const [users, setUsers] = useState([])
     const [messages, setMessages] = useState([])
     const [myProfil, setMyProfil] = useState([])
-    const [comments, setComments] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -43,6 +42,7 @@ const App = () => {
                 setMyProfil(data)
                 setIsLoaded(false)
             })
+
         setIsLoaded(!isLoaded)
     }, [])
 
@@ -61,7 +61,6 @@ const App = () => {
                             users={users}
                             messages={messages}
                             myProfil={myProfil}
-                            comments={comments}
                         />
                     }
                 />

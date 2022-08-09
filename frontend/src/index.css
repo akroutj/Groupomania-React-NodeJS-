@@ -11,3 +11,10 @@ code {
     monospace;
 }
 
+:root {
+  --primary: #FD2D01;
+  --secondary: #FFD7D7;
+  --tertiary: #4E5166;
+  --lightgrey: #d3d3d3;
+}
+

@@ -101,7 +101,7 @@ label {
 
 .login-form-icon{
     padding-right: 10px;
-    color: #4E5166;
+    color: var(--tertiary)
 }
 
 

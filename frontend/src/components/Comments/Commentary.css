@@ -1,0 +1,11 @@
+
+.commentary-container {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-left: 20px;
+}
+
+.commentary-user-name {
+    margin-right: 10px;
+}

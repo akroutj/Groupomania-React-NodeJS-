@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Commentary from './Commentary'
 
 const CommentsList = (props) => {
-    const [comments, setComments] = useState(false)
+    const [comments, setComments] = useState([])
 
     useEffect(() => {
         fetch(
@@ -13,19 +13,14 @@ const CommentsList = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 setComments(data)
-
-                console.log(data)
             })
     }, [])
 
     return (
         <div>
-            {comments &&
-                comments?.map((commentData, index) => (
-                    <Commentary
-                        key={'commentary' + index}
-                        oneComment={commentData.commentary}
-                    />
+            {comments.lenght !== 0 &&
+                comments.map((commentData, index) => (
+                    <Commentary key={index} comment={commentData} />
                 ))}
         </div>
     )

@@ -2,11 +2,11 @@
 .card-header{
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     padding: 20px;
 }
-.user-job {
+.user-job, .user-name {
     padding-left: 10px;
 }
 
