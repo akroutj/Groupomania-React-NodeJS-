@@ -8,7 +8,7 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 # Technologies utilisées
 
-* Front-end : React
+* Front-end : React, CSS
 * Back-end : MongoDB, Mongoose, Express
 
 # Installation
@@ -32,5 +32,5 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 ## Frontend :
 
-* Ouvrir un nouveau terminal et se rendre dans le dossier Frontend
+* Ouvrir un nouveau terminal et se rendre dans le dossier Frontend `$ cd frontend`
 * Lancer React avec la commande `$ npm start`
