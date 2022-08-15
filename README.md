@@ -13,10 +13,15 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 # Installation
 
-cloner le dépot
+### Créez un dossier et entrez dedans
 
+`$ mkdir "nom_du_dossier"`
 
-`git clone`
+`$ cd "nom_du_dossier"`
+
+### cloner le dépot
+
+`$ git clone https://github.com/akroutj/Social-Network.git`
 
 __Backend :__
 
