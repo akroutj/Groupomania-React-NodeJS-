@@ -13,14 +13,19 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 # Installation
 
+cloner le dépot
+
+
+`git clone`
+
 __Backend :__
 
 * Télécharger __NodeJS__
-* Créer un fichier __.env__ pour remplir les variables d'environnements
-* Se rendre dans le dossier Backend, installer __Node__ et toute les dépendances avec __$ npm i__
-* Lancer le serveur avec __$ nodemon__
+* Créer un fichier `.env` pour remplir les variables d'environnements
+* Se rendre dans le dossier Backend, installer __Node__ et toute les dépendances avec `$ npm i`
+* Lancer le serveur avec `$ nodemon`
 
 __Frontend :__
 
 * Ouvrir un nouveau terminal et se rendre dans le dossier Frontend
-* Lancer React avec la commande __$ npm start__
+* Lancer React avec la commande `$ npm start`
