@@ -23,14 +23,14 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 `$ git clone https://github.com/akroutj/Social-Network.git`
 
-__Backend :__
+## Backend :
 
 * Télécharger __NodeJS__
-* Créer un fichier `.env` pour remplir les variables d'environnements
+* Créer un fichier `.env`et veuillez rentrer le host, les identifiants de votre utilisateur admin et le nom de la base de données que vous souhaitez créer `SECRET_DB = "mongodb+srv://<user>:<password>@cluster0.orfzigj.mongodb.net/?retryWrites=true&w=majority"`
 * Se rendre dans le dossier Backend, installer __Node__ et toute les dépendances avec `$ npm i`
 * Lancer le serveur avec `$ nodemon`
 
-__Frontend :__
+## Frontend :
 
 * Ouvrir un nouveau terminal et se rendre dans le dossier Frontend
 * Lancer React avec la commande `$ npm start`
