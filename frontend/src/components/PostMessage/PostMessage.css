@@ -93,3 +93,20 @@
     padding: 10px;
     font-size: 30px;
 }
+
+@media only screen and (max-device-width : 970px) {
+
+    .new-message-container {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-device-width : 650px) {
+
+    .new-message-container {
+        width: 85%;
+        
+    }
+}
+
+

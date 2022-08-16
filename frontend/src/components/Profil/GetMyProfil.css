@@ -5,11 +5,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    margin-top: 30px;
+    width: 40%;
+    margin-top: 120px;
     border-radius: 20px 20px 20px 20px;
     box-shadow: 0px 5px 10px gray;
 }
+
 .identity-container {
     display: flex;
     flex-direction: column;
@@ -35,6 +36,7 @@
     width: 100%;
     background-color: pink;   
     padding: 20px;
+    box-shadow: 0px 5px 15px gray;
 }
 
 .profil-main-card {
@@ -69,4 +71,26 @@
 .profil-buttons button:hover {
     transform: scale(1.05);
     box-shadow: 0px 2px 15px grey;
+}
+
+@media only screen and (max-device-width : 975px) {
+
+    .profil-card {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-device-width : 700px) {
+
+    .profil-card {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-device-width : 500px) {
+
+    .profil-card {
+        width: 100%;
+        border-radius: 0%;
+    }
 }

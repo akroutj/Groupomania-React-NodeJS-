@@ -6,8 +6,16 @@
     justify-content: space-between;
     padding: 20px;
 }
+
 .user-job, .user-name {
     padding-left: 10px;
+    margin: 0;
+}
+
+.identity-name-and-job {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 }
 
 .post-card{
@@ -89,4 +97,42 @@
 .submit-icon {
     font-size: 20px;
     padding: 5px;
+}
+
+@media only screen and (max-device-width : 970px) {
+
+    .post-card {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-device-width : 650px) {
+
+    .post-card{
+        width: 100%;
+        border-radius: 0%;
+    }
+}
+
+@media only screen and (max-device-width : 500px) {
+
+    .user-job,
+    .user-name,
+    .commentary-user-name {
+        font-size: 0.9rem;
+    }
+
+    .identity-photo-commentary {
+        height: 35px;
+    }
+
+    .commentary-name-user{
+        font-size: 0.8rem;
+    }
+
+    .identity-name-and-job {
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+    }
 }

@@ -28,7 +28,7 @@ mongoose.connect(process.env.SECRET_DB,
     })
 
     .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+    .catch((err) => console.log(err));
 
 // Fonction similaire à bodyParser (extraction du body JSON pour la methode POST)
 app.use(express.json());

@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .navlink, .profil-icon {
@@ -15,8 +16,27 @@
     
 }
 
+.profil-icon {
+    margin-right: 40px;
+}
+
 .navlink:hover, .profil-icon {
     transform: scale(1.05);
-
 }
+
+/* @media only screen and (max-device-width : 770px) {
+
+    .navigation {
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        margin-top: 20px;
+        margin-right: 20px;
+        background-color: pink;
+        padding: 30px;
+             
+            }
+    }
+    */
+
 

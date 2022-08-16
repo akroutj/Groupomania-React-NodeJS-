@@ -28,7 +28,6 @@ const MessagesList = (props) => {
         fetch('http://localhost:3100/api/comments', requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data))
-
             .catch((error) => console.log(error.message))
     }
 
@@ -51,30 +50,33 @@ const MessagesList = (props) => {
                                         alt="Visage de la personne"
                                     />
                                 </div>
-                                <h3 className="user-name">
-                                    {props.users.length !== 0 &&
-                                        props.users.filter(
-                                            (user) =>
-                                                user._id === message.userId
-                                        ).length !== 0 &&
-                                        props.users.filter(
-                                            (user) =>
-                                                user._id === message.userId
-                                        )[0].name}
-                                </h3>
+                                <div className="identity-name-and-job">
+                                    <h3 className="user-name">
+                                        {props.users.length !== 0 &&
+                                            props.users.filter(
+                                                (user) =>
+                                                    user._id === message.userId
+                                            ).length !== 0 &&
+                                            props.users.filter(
+                                                (user) =>
+                                                    user._id === message.userId
+                                            )[0].name}
+                                    </h3>
 
-                                <p className="user-job">
-                                    {props.users.length !== 0 &&
-                                        props.users.filter(
-                                            (user) =>
-                                                user._id === message.userId
-                                        ).length !== 0 &&
-                                        props.users.filter(
-                                            (user) =>
-                                                user._id === message.userId
-                                        )[0].job}
-                                </p>
+                                    <p className="user-job">
+                                        {props.users.length !== 0 &&
+                                            props.users.filter(
+                                                (user) =>
+                                                    user._id === message.userId
+                                            ).length !== 0 &&
+                                            props.users.filter(
+                                                (user) =>
+                                                    user._id === message.userId
+                                            )[0].job}
+                                    </p>
+                                </div>
                             </div>
+
                             <FaBars className="setting-card" />
                         </div>
                         {message?.imageUrl && (

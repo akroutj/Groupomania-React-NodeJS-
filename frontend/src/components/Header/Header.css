@@ -7,7 +7,8 @@
     padding: 20px;
     height: 30px;
     box-shadow: 0px 5px 10px gray;
-    
+    position: fixed ;
+    width: 100%;
 }
 
 .header-logo {

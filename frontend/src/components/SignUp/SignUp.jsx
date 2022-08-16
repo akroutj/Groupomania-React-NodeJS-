@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { validEmail, validPassword } from '../../utils/Regex'
 
 import { FaLock, FaEnvelope, FaUserCircle, FaAddressCard } from 'react-icons/fa'
 import logo from '../../assets/white-logo-single.png'
-//import logo from '../../'
 import './SignUp.css'
 
 function SignUpComp() {
@@ -12,6 +12,8 @@ function SignUpComp() {
     const [password, setPassword] = useState('')
     const [job, setJob] = useState('')
     const [error, setError] = useState('')
+    const [emailErr, setEmailErr] = useState(false)
+    const [pwdError, setPwdError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -25,6 +27,12 @@ function SignUpComp() {
             job.length === 0
         ) {
             setError('Une erreur est survenue')
+        }
+        if (!validEmail.test(email)) {
+            setEmailErr(true)
+        }
+        if (!validPassword.test(password)) {
+            setPwdError(true)
         } else {
             fetch('http://localhost:3100/api/auth/signup', {
                 method: 'POST',
@@ -121,6 +129,8 @@ function SignUpComp() {
                 <button className="submit" type="submit">
                     Inscription
                 </button>
+                {emailErr && <p>Your email is invalid</p>}
+                {pwdError && <p>Your password is invalid</p>}
                 <div className="back-home-page">
                     <p> Revenir à la </p>
                     <Link to="/" className="link">
