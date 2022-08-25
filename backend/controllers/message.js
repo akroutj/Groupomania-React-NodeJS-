@@ -1,5 +1,6 @@
 // Récuperation du schema pour les messages
 const Message = require('../models/Message');
+const Comment = require('../models/Comment');
 
 const jwt = require('jsonwebtoken');
 
@@ -8,8 +9,8 @@ const fs = require('fs');
 
 // Logique metier - Récupération de toutes les messages
 exports.getAllMessages = (req, res, next) => {
-    Message.find()
-    // Message.find().sort({userId: -1})
+    
+     Message.find().sort({date: -1})
     .then(messages => res.status(200).json(messages))
     .catch(error => res.status(400).json({ error }));
 };
@@ -61,13 +62,17 @@ exports.deleteMessage = (req, res) => {
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
 
+    
     Message.findOne({ _id: req.params.id })
         .then(message => {
             if (message.userId == userId) {
                 const filename = message.imageUrl.split('/images/')[1];
+
                 fs.unlink(`images/${filename}`, () => {
                     Message.deleteOne({ _id: req.params.id })
-                        .then(() => res.status(200).json({ message: 'Post supprimée !' }))
+                        
+                        .then(() => Comment.deleteMany({ messageId: req.params.id }).then((delComment) => console.log(delComment)))
+                        .then(() =>  res.status(200).json({ message: 'Post supprimée !' }))
                         .catch(error => res.status(400).json({ error }));
                 });
             } else {

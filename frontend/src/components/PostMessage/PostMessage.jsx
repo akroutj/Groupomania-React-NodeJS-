@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import GetMyProfil from '../Profil/GetMyProfil'
-import { FaCamera } from 'react-icons/fa'
+import { FaCamera, FaRegCheckCircle } from 'react-icons/fa'
 
 import './PostMessage.css'
 
@@ -8,8 +8,10 @@ function PostMessage(props) {
     const [message, setMessage] = useState('')
     const [selectImage, setSelectImage] = useState(null)
 
-    const sendMessage = (e) => {
-        e.preventDefault()
+    const sendMessage = () => {
+        const date = new Date().toUTCString()
+        console.log(date)
+
         const formData = new FormData()
         formData.append('image', selectImage !== null ? selectImage[0] : null)
         formData.append('message', message)
@@ -17,6 +19,7 @@ function PostMessage(props) {
             'userId',
             JSON.parse(localStorage.getItem('userData')).userId
         )
+        formData.append('date', date)
 
         const requestOptions = {
             method: 'POST',
@@ -57,20 +60,30 @@ function PostMessage(props) {
 
                 <form onSubmit={sendMessage} className="post-message-form">
                     <div className="post-image-container">
-                        <label htmlFor="file" className="file-image">
-                            <input
-                                type="file"
-                                id="file"
-                                name="myImage"
-                                onChange={(e) => {
-                                    setSelectImage(e.target.files)
-                                }}
-                            />
-                            Selectionnez une photo
-                            <FaCamera className="camera-icon" />
-                        </label>
+                        {selectImage === null && (
+                            <label htmlFor="file" className="file-image">
+                                <input
+                                    type="file"
+                                    id="file"
+                                    name="myImage"
+                                    onChange={(e) => {
+                                        setSelectImage(e.target.files)
+                                    }}
+                                />
+                                Selectionnez une photo
+                                <FaCamera className="camera-icon" />
+                            </label>
+                        )}
+                        {selectImage !== null && (
+                            <div className="success-upload-container">
+                                <FaRegCheckCircle className="success-logo" />
+                                <p> Image upload avec succès </p>
+                                <button onClick={(e) => setSelectImage(null)}>
+                                    Annuler{' '}
+                                </button>
+                            </div>
+                        )}
                     </div>
-
                     <div className="post-comments-area">
                         <label
                             className="text-area-message"

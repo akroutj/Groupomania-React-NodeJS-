@@ -3,6 +3,7 @@ import Header from '../components/Header/Header'
 
 import PostMessage from '../components/PostMessage/PostMessage'
 import AllMessages from '../components/AllMessages/AllMessages'
+import { Suspense } from 'react'
 
 import '../styles/Forum.css'
 
@@ -11,7 +12,10 @@ function Forum(props) {
         <>
             <Header />
             <div className="forum-container">
-                <PostMessage myProfil={props.myProfil} />
+                <Suspense fallback={<p>coucou</p>}>
+                    <PostMessage myProfil={props.myProfil} />
+                </Suspense>
+
                 <AllMessages
                     messages={props.messages}
                     users={props.users}

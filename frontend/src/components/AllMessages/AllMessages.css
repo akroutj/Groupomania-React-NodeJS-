@@ -27,9 +27,10 @@
     overflow: visible;
 }
 
-.setting-card {
-    font-size: 1.5rem;
+.delete-icon {
+    font-size: 1.1rem;
     color: #FD2D01;
+    cursor: pointer;
 }
 
 .image-cont {

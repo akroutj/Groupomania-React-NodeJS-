@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { validEmail, validPassword } from '../../utils/Regex'
+import { validEmail } from '../../utils/Regex'
 
 import { FaLock, FaEnvelope, FaUserCircle, FaAddressCard } from 'react-icons/fa'
 import logo from '../../assets/white-logo-single.png'
@@ -13,7 +13,7 @@ function SignUpComp() {
     const [job, setJob] = useState('')
     const [error, setError] = useState('')
     const [emailErr, setEmailErr] = useState(false)
-    const [pwdError, setPwdError] = useState(false)
+    // const [pwdError, setPwdError] = useState(false)
 
     const navigate = useNavigate()
 
@@ -31,9 +31,10 @@ function SignUpComp() {
         if (!validEmail.test(email)) {
             setEmailErr(true)
         }
-        if (!validPassword.test(password)) {
-            setPwdError(true)
-        } else {
+        // if (!validPassword.test(password)) {
+        //     setPwdError(true)
+        //     console.log('error password')
+        else {
             fetch('http://localhost:3100/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -44,7 +45,7 @@ function SignUpComp() {
                     job: job,
                 }),
             })
-                .then((response) => response.json())
+                .then((res) => res.json())
                 .then(navigate('/'))
                 .catch((err) => setError(`Une erreur est survenue ${err}`))
         }
@@ -85,6 +86,9 @@ function SignUpComp() {
                     <label htmlFor="email">
                         <FaEnvelope className="password-icon" />
                         Email
+                        {emailErr && (
+                            <p className="error-message">email non valide</p>
+                        )}
                     </label>
                     <br />
                     <input
@@ -99,6 +103,11 @@ function SignUpComp() {
                         <label htmlFor="password">
                             <FaLock className="password-icon" />
                             Mot de passe
+                            {/* {pwdError && (
+                                <p className="error-message">
+                                    mot de passe non valide
+                                </p>
+                            )} */}
                         </label>
                         <br />
                         <input
@@ -129,8 +138,7 @@ function SignUpComp() {
                 <button className="submit" type="submit">
                     Inscription
                 </button>
-                {emailErr && <p>Your email is invalid</p>}
-                {pwdError && <p>Your password is invalid</p>}
+
                 <div className="back-home-page">
                     <p> Revenir à la </p>
                     <Link to="/" className="link">

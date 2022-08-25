@@ -64,3 +64,50 @@ exports.getMyProfil = (req, res, next) => {
         .then(user => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
 };
+
+// Logique metier - Modification du profil
+exports.modifyMyProfil= (req, res) => {
+
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+    
+    const messageObject = req.file ?
+        {
+            ...JSON.parse(req.body.message),
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : { ...req.body };
+
+    Message.findOne({ _id: req.params.id })
+        .then(message => {
+            if (message.userId == userId) {
+                Message.updateOne({ _id: req.params.id }, { ...messageObject, _id: req.params.id })
+                    .then(() => res.status(200).json({ message: 'Profil modifié !' }))
+                    .catch(error => res.status(400).json({ error }));
+            } else {
+                res.status(401).json({ message: 'Requête non autorisée !' });
+            }
+        }).catch(error => res.status(500).json({ error }));
+};
+
+// Supression du profil
+
+exports.deleteMyProfil = (req, res) => {
+
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    const userId = decodedToken.userId;
+
+    
+    User.findOne({ _id: req.params.id })
+        .then(user => {
+            if (user._id == userId) {
+                User.deleteOne({ _id: req.params.id })     
+                    .catch(error => res.status(400).json({ error }));  
+            } else {
+                res.status(401).json({ message: 'Requête non autorisée !' });
+            }
+        })
+        .then(() => res.status(200).json({ message: 'Profil Supprimé !' }))
+        .catch(error => res.status(500).json({ error }));
+};

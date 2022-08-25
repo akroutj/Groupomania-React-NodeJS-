@@ -38,6 +38,7 @@ function Login() {
                         JSON.stringify({
                             userId: res.userId,
                             token: res.token,
+                            isLogged: true,
                         })
                     )
                     navigate('/forum')

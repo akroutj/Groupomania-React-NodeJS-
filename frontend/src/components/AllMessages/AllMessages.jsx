@@ -1,11 +1,57 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
-import { FaBars, FaHeart, FaArrowCircleRight } from 'react-icons/fa'
+import { FaHeart, FaTrashAlt } from 'react-icons/fa'
 import CommentsList from '../Comments/CommentsList'
+import { useEffect } from 'react'
 
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
 
+    //Liker un post
+    const addLike = (e, messageId) => {
+        e.preventDefault()
+        console.log('click')
+        console.log(props.messageId)
+        const formData = {
+            like: 1,
+            userId: JSON.parse(localStorage.getItem('userData')).userId,
+        }
+
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization:
+                    'Bearer ' +
+                    JSON.parse(localStorage.getItem('userData')).token,
+            },
+            body: JSON.stringify(formData),
+        }
+        fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error.message))
+    }
+
+    //Supprimer un message
+    const deleteOneMessage = (e, messageId) => {
+        e.preventDefault()
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization:
+                    'Bearer ' +
+                    JSON.parse(localStorage.getItem('userData')).token,
+            },
+        }
+        fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error.message))
+    }
+
+    //Poster un commentaire : REFACTORING ?
     const sendCommentary = (e, message) => {
         const formData = {
             commentary: commentary,
@@ -76,8 +122,18 @@ const MessagesList = (props) => {
                                     </p>
                                 </div>
                             </div>
-
-                            <FaBars className="setting-card" />
+                            <div>
+                                {props.myProfil._id !== props.messages ? (
+                                    <FaTrashAlt
+                                        className="delete-icon"
+                                        onClick={(e) =>
+                                            deleteOneMessage(e, message._id)
+                                        }
+                                    />
+                                ) : (
+                                    ''
+                                )}
+                            </div>
                         </div>
                         {message?.imageUrl && (
                             <div className="image-cont">
@@ -90,7 +146,7 @@ const MessagesList = (props) => {
                         )}
                         <div className="card-description">
                             <p>{message.message}</p>
-                            <FaHeart />
+                            <FaHeart onClick={(e) => addLike(e, message._id)} />
                         </div>
                         <hr className="line"></hr>
 
@@ -135,10 +191,6 @@ const MessagesList = (props) => {
                                         setCommentary(e.target.value)
                                     }
                                 ></input>
-                                <FaArrowCircleRight
-                                    className="submit-icon"
-                                    type="submit"
-                                />
                             </div>
                         </form>
                     </div>

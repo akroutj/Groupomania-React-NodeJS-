@@ -9,7 +9,7 @@ const messageSchema = mongoose.Schema({
     message: { type: String, require: true },
     likes: { type: Number, default: 0 },
     usersLiked: { type: [String] },
-    commentary: { type: String },
+    date: { type: Date }
 });
 
 module.exports = mongoose.model('Message', messageSchema);
