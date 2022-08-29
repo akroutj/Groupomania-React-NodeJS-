@@ -43,6 +43,17 @@
     object-fit: cover;
 }
 
+.like-container {
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+.heart-icon {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
 .card-description {
     display: flex;
     flex-direction: row;

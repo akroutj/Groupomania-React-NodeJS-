@@ -12,6 +12,9 @@ const App = () => {
 
     const [users, setUsers] = useState([])
     const [messages, setMessages] = useState([])
+    useEffect(() => {
+        setMessages(messages)
+    }, [messages])
     const [myProfil, setMyProfil] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -65,6 +68,7 @@ const App = () => {
                         <Forum
                             users={users}
                             messages={messages}
+                            setMessages={setMessages}
                             myProfil={myProfil}
                         />
                     }

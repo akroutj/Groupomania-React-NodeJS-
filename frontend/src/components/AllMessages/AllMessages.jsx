@@ -1,20 +1,34 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
-import { FaHeart, FaTrashAlt } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa'
 import CommentsList from '../Comments/CommentsList'
-import { useEffect } from 'react'
+import MessageCardHeader from './MessageCardHeader'
 
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
 
     //Liker un post
-    const addLike = (e, messageId) => {
+    const addLike = (e, messageId, message) => {
         e.preventDefault()
-        console.log('click')
-        console.log(props.messageId)
-        const formData = {
-            like: 1,
-            userId: JSON.parse(localStorage.getItem('userData')).userId,
+        const userLikedFilter = message.usersLiked.filter(
+            (userLiked) =>
+                userLiked ===
+                JSON.parse(localStorage.getItem('userData')).userId
+        )
+
+        console.log(message.usersLiked)
+
+        let formData = {}
+        if (userLikedFilter.length === 0) {
+            formData = {
+                like: 1,
+                userId: JSON.parse(localStorage.getItem('userData')).userId,
+            }
+        } else {
+            formData = {
+                like: 0,
+                userId: JSON.parse(localStorage.getItem('userData')).userId,
+            }
         }
 
         const requestOptions = {
@@ -27,15 +41,21 @@ const MessagesList = (props) => {
             },
             body: JSON.stringify(formData),
         }
-        fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
+        fetch(
+            'http://localhost:3100/api/messages/' + messageId + '/like',
+            requestOptions
+        )
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                console.log(data)
+                window.location.reload()
+            })
+
             .catch((error) => console.log(error.message))
     }
 
     //Supprimer un message
     const deleteOneMessage = (e, messageId) => {
-        e.preventDefault()
         const requestOptions = {
             method: 'DELETE',
             headers: {
@@ -45,13 +65,14 @@ const MessagesList = (props) => {
                     JSON.parse(localStorage.getItem('userData')).token,
             },
         }
+        console.log(messageId)
         fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data))
             .catch((error) => console.log(error.message))
     }
 
-    //Poster un commentaire : REFACTORING ?
+    //Poster un commentaire
     const sendCommentary = (e, message) => {
         const formData = {
             commentary: commentary,
@@ -82,59 +103,12 @@ const MessagesList = (props) => {
             {props.messages.length !== 0 &&
                 props.messages.map((message, index) => (
                     <div key={index} className="post-card">
-                        <div className="card-header" key={message._id}>
-                            <div className="identity-card">
-                                <div>
-                                    <img
-                                        className="identity-photo"
-                                        src={
-                                            props.myProfil.profilImage !==
-                                            undefined
-                                                ? props.myProfil.profilImage
-                                                : require('../../../src/assets/red-logo-single.png')
-                                        }
-                                        alt="Visage de la personne"
-                                    />
-                                </div>
-                                <div className="identity-name-and-job">
-                                    <h3 className="user-name">
-                                        {props.users.length !== 0 &&
-                                            props.users.filter(
-                                                (user) =>
-                                                    user._id === message.userId
-                                            ).length !== 0 &&
-                                            props.users.filter(
-                                                (user) =>
-                                                    user._id === message.userId
-                                            )[0].name}
-                                    </h3>
-
-                                    <p className="user-job">
-                                        {props.users.length !== 0 &&
-                                            props.users.filter(
-                                                (user) =>
-                                                    user._id === message.userId
-                                            ).length !== 0 &&
-                                            props.users.filter(
-                                                (user) =>
-                                                    user._id === message.userId
-                                            )[0].job}
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                {props.myProfil._id !== props.messages ? (
-                                    <FaTrashAlt
-                                        className="delete-icon"
-                                        onClick={(e) =>
-                                            deleteOneMessage(e, message._id)
-                                        }
-                                    />
-                                ) : (
-                                    ''
-                                )}
-                            </div>
-                        </div>
+                        <MessageCardHeader
+                            message={message}
+                            myProfil={props.myProfil}
+                            users={props.users}
+                            deleteOneMessage={deleteOneMessage}
+                        />
                         {message?.imageUrl && (
                             <div className="image-cont">
                                 <img
@@ -146,7 +120,15 @@ const MessagesList = (props) => {
                         )}
                         <div className="card-description">
                             <p>{message.message}</p>
-                            <FaHeart onClick={(e) => addLike(e, message._id)} />
+                            <div className="like-container">
+                                <FaHeart
+                                    className="heart-icon"
+                                    onClick={(e) =>
+                                        addLike(e, message._id, message)
+                                    }
+                                />
+                                <p>{message.likes}</p>
+                            </div>
                         </div>
                         <hr className="line"></hr>
 
@@ -165,8 +147,7 @@ const MessagesList = (props) => {
                                     <img
                                         className="identity-photo-commentary"
                                         src={
-                                            props.myProfil.profilImage !==
-                                            undefined
+                                            props.myProfil.profilImage !== null
                                                 ? props.myProfil.profilImage
                                                 : require('../../../src/assets/red-logo-single.png')
                                         }

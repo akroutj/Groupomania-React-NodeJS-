@@ -17,6 +17,7 @@ function Forum(props) {
                 </Suspense>
 
                 <AllMessages
+                    setMessages={props.setMessages}
                     messages={props.messages}
                     users={props.users}
                     myProfil={props.myProfil}

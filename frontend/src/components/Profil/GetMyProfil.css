@@ -32,6 +32,11 @@
     border-radius: 50%;
 }
 
+.update-image-icon {
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
 .info-card {
     width: 100%;
     background-color: pink;   

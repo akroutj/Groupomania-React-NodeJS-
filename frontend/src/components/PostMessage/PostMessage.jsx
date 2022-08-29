@@ -45,7 +45,7 @@ function PostMessage(props) {
                         <img
                             className="identity-photo"
                             src={
-                                props.myProfil.profilImage !== undefined
+                                props.myProfil.profilImage !== null
                                     ? props.myProfil.profilImage
                                     : require('../../../src/assets/red-logo-single.png')
                             }
