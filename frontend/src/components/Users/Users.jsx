@@ -2,7 +2,7 @@ import React from 'react'
 import './Users.css'
 
 function UsersList(props) {
-    console.log(props.users)
+    console.log(props.users.name)
     return (
         <div className="users-container">
             {props.users.length !== 0 &&
@@ -12,8 +12,8 @@ function UsersList(props) {
                             <img
                                 className="identity-photo"
                                 src={
-                                    props.users.profilImage !== undefined
-                                        ? props.users.profilImage
+                                    user.profilImage !== undefined
+                                        ? user.profilImage
                                         : require('../../../src/assets/red-logo-single.png')
                                 }
                                 alt="profil"

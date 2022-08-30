@@ -132,7 +132,6 @@ const MessagesList = (props) => {
                         </div>
                         <hr className="line"></hr>
 
-                        {/* COMMENTS */}
                         <CommentsList
                             messageId={message._id}
                             commentsData={props.comments}

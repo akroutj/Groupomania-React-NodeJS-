@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-// import GetMyProfil from '../Profil/GetMyProfil'
 import { FaCamera, FaRegCheckCircle } from 'react-icons/fa'
+// import GetMyProfil from '../Profil/GetMyProfil'
 
 import './PostMessage.css'
 

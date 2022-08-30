@@ -67,28 +67,25 @@ exports.getMyProfil = (req, res, next) => {
 
 // Logique metier - Modification du profil
 exports.modifyMyProfil= (req, res) => {
-
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const userId = decodedToken.userId;
+console.log(req.body)
     
-    const userObject = req.file ?
-        {
-            ...JSON.parse(req.body.user),
-            profilImage: `${req.protocol}://${req.get('host')}/images/profil/${req.file.filename}`
-        } : { ...req.body };
+    
+            
+            
+console.log(`${req.protocol}://${req.get('host')}/images/${req.file.filename}`)
 
     User.findOne({ _id: req.params.id })
         .then(user => {
-            if (userId) {
-                user.updateOne({ _id: req.params.id }, { ...userObject, _id: req.params.id })
+            console.log(user)
+            if (user) {
+                user.updateOne({profilImage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` })
                     .then(() => res.status(200).json({ message: 'Photo de profil modifiée !' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 res.status(401).json({ message: 'Requête non autorisée !' });
-                console.log(userId)
+               
             }
-        }).catch(error => res.status(500).json({ error }));
+        }).catch(error => { console.log(error); res.status(500).json({ error }) });
 };
 
 // Supression du profil

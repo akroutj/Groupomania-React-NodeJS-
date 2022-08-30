@@ -14,12 +14,12 @@ const GetMyProfil = (props) => {
 
         const formData = new FormData()
         formData.append(
-            'profilImage',
+            'image',
             updateProfilImg !== null ? updateProfilImg[0] : null
         )
 
         const requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Authorization:
                     'Bearer ' +

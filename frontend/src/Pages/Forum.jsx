@@ -10,20 +10,24 @@ import '../styles/Forum.css'
 function Forum(props) {
     return (
         <>
-            <Header />
-            <div className="forum-container">
-                <Suspense fallback={<p>coucou</p>}>
-                    <PostMessage myProfil={props.myProfil} />
-                </Suspense>
+            {props.messages ? (
+                <>
+                    <Header />
+                    <div className="forum-container">
+                        <Suspense fallback={<p>coucou</p>}>
+                            <PostMessage myProfil={props.myProfil} />
+                        </Suspense>
 
-                <AllMessages
-                    setMessages={props.setMessages}
-                    messages={props.messages}
-                    users={props.users}
-                    myProfil={props.myProfil}
-                    comments={props.comments}
-                />
-            </div>
+                        <AllMessages
+                            setMessages={props.setMessages}
+                            messages={props.messages}
+                            users={props.users}
+                            myProfil={props.myProfil}
+                            comments={props.comments}
+                        />
+                    </div>
+                </>
+            ) : null}
         </>
     )
 }
