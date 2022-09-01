@@ -12,7 +12,7 @@ function UsersList(props) {
                             <img
                                 className="identity-photo"
                                 src={
-                                    user.profilImage !== undefined
+                                    user.profilImage !== null
                                         ? user.profilImage
                                         : require('../../../src/assets/red-logo-single.png')
                                 }

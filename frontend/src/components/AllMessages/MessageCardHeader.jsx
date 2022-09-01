@@ -1,5 +1,6 @@
 import { FaTrashAlt } from 'react-icons/fa'
 const MessageCardHeader = (props) => {
+    console.log(props.users)
     return (
         <div className="card-header" key={props.message._id}>
             <div className="identity-card">
@@ -7,8 +8,16 @@ const MessageCardHeader = (props) => {
                     <img
                         className="identity-photo"
                         src={
-                            props.myProfil.profilImage !== null
-                                ? props.myProfil.profilImage
+                            props.users.profilImage !== null
+                                ? props.users.length !== 0 &&
+                                  props.users.filter(
+                                      (user) =>
+                                          user._id === props.message.userId
+                                  ).length !== 0 &&
+                                  props.users.filter(
+                                      (user) =>
+                                          user._id === props.message.userId
+                                  )[0].profilImage
                                 : require('../../../src/assets/red-logo-single.png')
                         }
                         alt="Visage de la personne"
