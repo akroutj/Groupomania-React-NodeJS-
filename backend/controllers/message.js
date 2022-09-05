@@ -32,27 +32,21 @@ exports.createMessage = (req, res) => {
 
 // Logique metier - Modification d'un message
 exports.modifyMessage= (req, res) => {
-
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const userId = decodedToken.userId;
-    
-    const messageObject = req.file ?
-        {
-            ...JSON.parse(req.body.message),
-            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        } : { ...req.body };
-
+    let userId = req.body.userId;
+    console.log(userId)
+  
     Message.findOne({ _id: req.params.id })
+       
         .then(message => {
-            if (message.userId == userId) {
-                Message.updateOne({ _id: req.params.id }, { ...messageObject, _id: req.params.id })
+            if (message.userId === userId) {
+                
+                Message.updateOne({ imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` })
                     .then(() => res.status(200).json({ message: 'Post modifiée !' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
                 res.status(401).json({ message: 'Requête non autorisée !' });
             }
-        }).catch(error => res.status(500).json({ error }));
+        }).catch(error => res.status(500).json(console.log({ error})));
 };
 
 // Logique metier - Suppression d'un message

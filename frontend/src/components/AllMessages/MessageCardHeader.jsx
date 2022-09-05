@@ -1,6 +1,5 @@
 import { FaTrashAlt } from 'react-icons/fa'
 const MessageCardHeader = (props) => {
-    console.log(props.users)
     return (
         <div className="card-header" key={props.message._id}>
             <div className="identity-card">

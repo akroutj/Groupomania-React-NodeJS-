@@ -1,11 +1,35 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
-import { FaHeart } from 'react-icons/fa'
+import { FaHeart, FaPen } from 'react-icons/fa'
 import CommentsList from '../Comments/CommentsList'
 import MessageCardHeader from './MessageCardHeader'
 
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
+    const [updatePostImg, setUpdatePostImg] = useState(null)
+
+    //Modifier un Post
+    const updatePost = (e, messageId) => {
+        const formData = new FormData()
+
+        formData.append(
+            'image',
+            updatePostImg !== null ? updatePostImg[0] : null
+        )
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                Authorization:
+                    'Bearer ' + JSON.parse(localStorage.getItem('userData')),
+            },
+            body: formData,
+        }
+
+        fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error.message))
+    }
 
     //Liker un post
     const addLike = (e, messageId, message) => {
@@ -15,8 +39,6 @@ const MessagesList = (props) => {
                 userLiked ===
                 JSON.parse(localStorage.getItem('userData')).userId
         )
-
-        console.log(message.usersLiked)
 
         let formData = {}
         if (userLikedFilter.length === 0) {
@@ -65,7 +87,6 @@ const MessagesList = (props) => {
                     JSON.parse(localStorage.getItem('userData')).token,
             },
         }
-        console.log(messageId)
         fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
             .then((response) => response.json())
             .then((data) => console.log(data))
@@ -118,6 +139,30 @@ const MessagesList = (props) => {
                                 />
                             </div>
                         )}
+                        <form
+                            className="form-change-profil"
+                            onSubmit={updatePost(message._id)}
+                        >
+                            <label htmlFor="file" className="update-image-icon">
+                                <input
+                                    type="file"
+                                    id="file"
+                                    name="update-image-icon"
+                                    onChange={(e) => {
+                                        setUpdatePostImg(e.target.files)
+                                    }}
+                                />
+                                <FaPen />
+                            </label>
+                            <div className="change-photo-bouton">
+                                <input
+                                    type="submit"
+                                    className="post-button"
+                                    value="Sauvegarder"
+                                />
+                            </div>
+                        </form>
+
                         <div className="card-description">
                             <p>{message.message}</p>
                             <div className="like-container">
@@ -141,25 +186,6 @@ const MessagesList = (props) => {
                             onSubmit={(e) => sendCommentary(e, message)}
                             className="card-commentary"
                         >
-                            <div className="identity-card">
-                                <div className="user-photo-commentary">
-                                    <img
-                                        className="identity-photo-commentary"
-                                        src={
-                                            props.myProfil.profilImage !== null
-                                                ? props.myProfil.profilImage
-                                                : require('../../../src/assets/red-logo-single.png')
-                                        }
-                                        alt="visage de la personne"
-                                    />
-                                </div>
-                                <div className="commentary-info-card">
-                                    <h3 className="commentary-name-user">
-                                        {props.myProfil.name}
-                                    </h3>
-                                </div>
-                            </div>
-
                             <div className="commentaries-container">
                                 <label htmlFor="commentary"></label>
                                 <input

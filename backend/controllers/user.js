@@ -67,16 +67,8 @@ exports.getMyProfil = (req, res, next) => {
 
 // Logique metier - Modification du profil
 exports.modifyMyProfil= (req, res) => {
-console.log(req.body)
-    
-    
-            
-            
-console.log(`${req.protocol}://${req.get('host')}/images/${req.file.filename}`)
-
     User.findOne({ _id: req.params.id })
         .then(user => {
-            console.log(user)
             if (user) {
                 user.updateOne({profilImage: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` })
                     .then(() => res.status(200).json({ message: 'Photo de profil modifiée !' }))

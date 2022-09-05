@@ -24,20 +24,49 @@
     transform: scale(1.05);
 }
 
-/* @media only screen and (max-device-width : 770px) {
+.burger-icon {
+    color: white;
+    background-color: var(--tertiary);
+    font-size: 1.3rem;
+    display: none;
+    border: none;
+}
 
-    .navigation {
+ @media only screen and (max-device-width : 770px) {
+
+    .navigation-links-mobile {
+        display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: end;
-        margin-top: 20px;
-        margin-right: 20px;
-        background-color: pink;
-        padding: 30px;
-             
-            }
+        align-items: center;
+        background-color: var(--primary);
+        padding: 20px;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 70px;  
     }
-    */
+
+    .navigation-links {
+        display: none;
+    }
+
+    .navlink {
+        padding: 0 0 10px 0;
+    }
+
+    .profil-icon {
+        padding-left: 10px;
+    }
+
+    .burger-icon {
+        display:flex;
+    }
+    
+
+   
+
+ }
 
       
 

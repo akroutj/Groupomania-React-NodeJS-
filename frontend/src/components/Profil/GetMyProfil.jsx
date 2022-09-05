@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaPen } from 'react-icons/fa'
+import { FaPen, FaRegCheckCircle } from 'react-icons/fa'
+
 import './GetMyProfil.css'
 
 const GetMyProfil = (props) => {
@@ -34,7 +35,10 @@ const GetMyProfil = (props) => {
             requestOptions
         )
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                console.log(data)
+                window.location.reload()
+            })
             .catch((error) => console.log(error.message))
     }
 
@@ -63,7 +67,7 @@ const GetMyProfil = (props) => {
     return (
         <div className="profil-card">
             <div className="identity-container">
-                <form onSubmit={modifyImage}>
+                <form className="form-change-profil" onSubmit={modifyImage}>
                     {updateProfilImg === null && (
                         <label htmlFor="file" className="update-image-icon">
                             <input
@@ -79,31 +83,40 @@ const GetMyProfil = (props) => {
                     )}
                     {updateProfilImg !== null && (
                         <div className="success-upload-container">
-                            <p> Image upload avec succès </p>
-                            <button onClick={(e) => setUpdateProfilImg(null)}>
-                                Annuler{' '}
-                            </button>
+                            <div className="succes-upload">
+                                <FaRegCheckCircle className="success-logo" />
+                                <p> Image upload avec succès </p>
+                            </div>
+                            <div className="choice-button">
+                                <div className="change-photo-bouton">
+                                    <input
+                                        type="submit"
+                                        className="post-button"
+                                        value="Sauvegarder"
+                                    />
+                                </div>
+                                <button
+                                    className="cancel-button"
+                                    onClick={(e) => setUpdateProfilImg(null)}
+                                >
+                                    Annuler{' '}
+                                </button>
+                            </div>
                         </div>
                     )}
-                    <div className="change-photo-bouton">
-                        <input
-                            type="submit"
-                            className="post-button"
-                            value="Sauvegarder"
+
+                    <div className="profil-photo-card">
+                        <img
+                            className="profil-photo"
+                            src={
+                                props.myProfil.profilImage !== null
+                                    ? props.myProfil.profilImage
+                                    : require('../../../src/assets/red-logo-single.png')
+                            }
+                            alt="profil"
                         />
                     </div>
                 </form>
-                <div className="profil-photo-card">
-                    <img
-                        className="profil-photo"
-                        src={
-                            props.myProfil.profilImage !== null
-                                ? props.myProfil.profilImage
-                                : require('../../../src/assets/red-logo-single.png')
-                        }
-                        alt="profil"
-                    />
-                </div>
 
                 <div className="profil-main-card">
                     <form className="info-card">

@@ -11,6 +11,31 @@
     box-shadow: 0px 5px 10px gray;
 }
 
+.form-change-profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.succes-upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+}
+
+.cancel-button {
+    margin-top: 15px;
+}
+
+.choice-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .identity-container {
     display: flex;
     flex-direction: column;
@@ -34,6 +59,7 @@
 .update-image-icon {
     font-size: 1.2rem;
     color: var(--primary);
+    margin-top: 15px;
 }
 
 .info-card {
