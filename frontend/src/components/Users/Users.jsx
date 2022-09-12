@@ -1,5 +1,6 @@
 import React from 'react'
 import './Users.css'
+import { FaStar } from 'react-icons/fa'
 
 function UsersList(props) {
     console.log(props.users.name)
@@ -22,6 +23,13 @@ function UsersList(props) {
                         <div className="name-card">
                             <h3 className="name-user">{user.name}</h3>
                             <p className="job-user">{user.job}</p>
+                        </div>
+                        <div>
+                            {user.admin === true && (
+                                <div className="admin-users-container">
+                                    <FaStar className="star-icon" />
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}

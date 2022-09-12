@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #4E5166;
+    background-color: var(--primary);
     padding: 20px;
     height: 30px;
     box-shadow: 0px 5px 10px gray;

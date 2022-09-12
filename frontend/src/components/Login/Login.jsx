@@ -5,7 +5,7 @@ import FormLogin from './FormLogin'
 import './Login.css'
 import logo from '../../assets/white-logo-single.png'
 
-function Login() {
+function Login(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
@@ -15,6 +15,7 @@ function Login() {
 
     const LoginValidation = (e) => {
         e.preventDefault()
+        props.setIsLoaded(true)
         if (
             email.length === 0 ||
             password.length === 0 ||
@@ -41,9 +42,11 @@ function Login() {
                         })
                     )
                     navigate('/forum')
+                    window.location.reload()
                 })
                 .catch((err) => setError(`Une erreur est survenue ${err}`))
         }
+        props.setIsLoaded(false)
     }
 
     return (

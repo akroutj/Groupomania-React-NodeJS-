@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './NavLink.css'
 import { FaPowerOff, FaBars, FaTimes } from 'react-icons/fa'
-import { userLogout } from '../../utils/toasts'
 
 function NavLink() {
     const navigate = useNavigate()
@@ -13,7 +12,6 @@ function NavLink() {
     function Logout() {
         localStorage.clear(user)
         navigate('/')
-        userLogout()
     }
 
     return (

@@ -12,5 +12,4 @@ const messageSchema = mongoose.Schema({
     date: { type: Date }
 });
 
-
 module.exports = mongoose.model('Message', messageSchema);

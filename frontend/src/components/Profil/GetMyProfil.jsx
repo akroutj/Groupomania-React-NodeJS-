@@ -120,13 +120,13 @@ const GetMyProfil = (props) => {
 
                 <div className="profil-main-card">
                     <form className="info-card">
-                        <p>
+                        <p className="text-info">
                             <strong>Nom : </strong> {props.myProfil.name}
                         </p>
-                        <p>
+                        <p className="text-info">
                             <strong>Job : </strong> {props.myProfil.job}
                         </p>
-                        <p>
+                        <p className="text-info">
                             <strong>Email : </strong> {props.myProfil.email}
                         </p>
                     </form>

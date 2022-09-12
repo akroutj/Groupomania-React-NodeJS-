@@ -49,6 +49,10 @@ app.use('/api/auth', userRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/comments', commentRoutes);
 
+// app.use((req, res) => {
+//     res.status(400)
+//     res.send('Page introuvable')
+// })
 
 // Exportation de 'app'
 module.exports = app;

@@ -20,7 +20,11 @@ const CommentsList = (props) => {
         <div>
             {comments.lenght !== 0 &&
                 comments.map((commentData, index) => (
-                    <Commentary key={index} comment={commentData} />
+                    <Commentary
+                        key={index}
+                        comment={commentData}
+                        myProfil={props.myProfil}
+                    />
                 ))}
         </div>
     )

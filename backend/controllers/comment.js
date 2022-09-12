@@ -19,7 +19,7 @@ exports.getCommentsByMessage = (req, res, next) => {
 
 // logique métier : créer un commentaire
 exports.createComment = (req, res, next) => {
-  console.log(req.body)
+  
   const comment = new Comment({
     commentary: req.body.commentary,
     userId: req.body.userId,
@@ -31,6 +31,32 @@ exports.createComment = (req, res, next) => {
     .then(() => res.status(201).json({ message: 'Votre commentaire est en ligne !' }))
     .catch(error => res.status(400).json({ error }));
 }
+
+// exports.deleteComment = (req, res) => {  
+//   Comment.findOne({ _id: req.params.commentId })
+//     .then((comment) => { 
+//         console.log(comment)
+//         Comment.deleteOne({ _id: req.params.id })
+//            .then(() =>  res.status(200).json({ message: 'Commentaire supprimé !' }))
+//            .catch(error => res.status(400).json({ error }));       
+//       })
+//     .catch(error => res.status(400).json({ error: 'errooooooor !!'}));
+// };
+
+exports.deleteComment = (req, res) => {
+  
+ console.log(req.params)
+ 
+  Comment.deleteOne({ _id: req.params.articleId })
+           .then(() =>  res.status(200).json({ message: 'Commentaire supprimé !' }))
+           .catch(error => res.status(400).json({ error }));       
+      
+  
+};
+
+
+
+
 
 
 

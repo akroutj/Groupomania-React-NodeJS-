@@ -1,4 +1,5 @@
 import { FaTrashAlt } from 'react-icons/fa'
+
 const MessageCardHeader = (props) => {
     return (
         <div className="card-header" key={props.message._id}>
@@ -46,13 +47,19 @@ const MessageCardHeader = (props) => {
             </div>
             <div>
                 {JSON.parse(localStorage.getItem('userData')).userId ===
-                props.message.userId ? (
-                    <FaTrashAlt
-                        className="delete-icon"
-                        onClick={(e) =>
-                            props.deleteOneMessage(e, props.message._id)
-                        }
-                    />
+                    props.message.userId || props.myProfil.admin === true ? (
+                    <div>
+                        <FaTrashAlt
+                            className="delete-icon"
+                            onClick={(e) => {
+                                const confirm = window.confirm(
+                                    'Etes-vous sûres de vouloir supprimer ce post ?'
+                                )
+                                if (confirm === true)
+                                    props.deleteOneMessage(e, props.message._id)
+                            }}
+                        />
+                    </div>
                 ) : (
                     ''
                 )}

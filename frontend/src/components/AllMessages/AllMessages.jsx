@@ -1,33 +1,46 @@
 import React, { useState } from 'react'
 import './AllMessages.css'
-import { FaHeart, FaPen } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa'
 import CommentsList from '../Comments/CommentsList'
 import MessageCardHeader from './MessageCardHeader'
+import UpdatePostForm from './UpdatePostForm'
 
 const MessagesList = (props) => {
     const [commentary, setCommentary] = useState([])
     const [updatePostImg, setUpdatePostImg] = useState(null)
-
+    const [updatePostDescription, setUpdatePostDescription] = useState(null)
+    const [settingIsOpen, setSettingIsOpen] = useState(false)
     //Modifier un Post
+    console.log('MessagesList', props.updatePostImg)
     const updatePost = (e, messageId) => {
+        e.preventDefault()
+
+        console.log(e.target.value)
         const formData = new FormData()
 
         formData.append(
             'image',
             updatePostImg !== null ? updatePostImg[0] : null
         )
+
+        formData.append('message', updatePostDescription)
+
         const requestOptions = {
             method: 'PUT',
             headers: {
                 Authorization:
-                    'Bearer ' + JSON.parse(localStorage.getItem('userData')),
+                    'Bearer ' +
+                    JSON.parse(localStorage.getItem('userData')).token,
             },
             body: formData,
         }
 
         fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                console.log(data)
+                window.location.reload()
+            })
             .catch((error) => console.log(error.message))
     }
 
@@ -75,7 +88,6 @@ const MessagesList = (props) => {
 
             .catch((error) => console.log(error.message))
     }
-
     //Supprimer un message
     const deleteOneMessage = (e, messageId) => {
         const requestOptions = {
@@ -89,7 +101,11 @@ const MessagesList = (props) => {
         }
         fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                console.log(data)
+                window.location.reload()
+            })
+
             .catch((error) => console.log(error.message))
     }
 
@@ -139,32 +155,44 @@ const MessagesList = (props) => {
                                 />
                             </div>
                         )}
-                        <form
-                            className="form-change-profil"
-                            onSubmit={updatePost(message._id)}
-                        >
-                            <label htmlFor="file" className="update-image-icon">
-                                <input
-                                    type="file"
-                                    id="file"
-                                    name="update-image-icon"
-                                    onChange={(e) => {
-                                        setUpdatePostImg(e.target.files)
-                                    }}
-                                />
-                                <FaPen />
-                            </label>
-                            <div className="change-photo-bouton">
-                                <input
-                                    type="submit"
-                                    className="post-button"
-                                    value="Sauvegarder"
-                                />
-                            </div>
-                        </form>
+
+                        {/* MODIFICATION DU POST */}
+
+                        <div>
+                            {JSON.parse(localStorage.getItem('userData'))
+                                .userId === message.userId ? (
+                                <div className="modify-post-container">
+                                    <button
+                                        className="modify-post-button"
+                                        onClick={() =>
+                                            setSettingIsOpen(!settingIsOpen)
+                                        }
+                                    >
+                                        Modifier votre post
+                                    </button>{' '}
+                                    {settingIsOpen ? (
+                                        <UpdatePostForm
+                                            setUpdatePostImg={setUpdatePostImg}
+                                            setUpdatePostDescription={
+                                                setUpdatePostDescription
+                                            }
+                                            message={message}
+                                            settingIsOpen={setSettingIsOpen}
+                                            updatePost={updatePost}
+                                            updatePostImg={updatePostImg}
+                                        />
+                                    ) : (
+                                        ''
+                                    )}
+                                </div>
+                            ) : (
+                                ''
+                            )}
+                        </div>
 
                         <div className="card-description">
                             <p>{message.message}</p>
+
                             <div className="like-container">
                                 <FaHeart
                                     className="heart-icon"
@@ -175,11 +203,13 @@ const MessagesList = (props) => {
                                 <p>{message.likes}</p>
                             </div>
                         </div>
+
                         <hr className="line"></hr>
 
                         <CommentsList
                             messageId={message._id}
                             commentsData={props.comments}
+                            myProfil={props.myProfil}
                         />
 
                         <form

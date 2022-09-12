@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: 'lato';
   box-sizing: border-box;
-  
+  background-color: var(--secondary);
 }
 
 code {

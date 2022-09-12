@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/white-logo-single.png'
 
 const FormSignUp = (props) => {
+    console.log('formsignup', props.pwdError)
     return (
         <form onSubmit={props.Suscribe} className="form">
             <div className="logo-container">
@@ -45,11 +46,11 @@ const FormSignUp = (props) => {
                     <label htmlFor="password">
                         <FaLock className="password-icon" />
                         Mot de passe
-                        {/* {pwdError && (
-                                <p className="error-message">
-                                    mot de passe non valide
-                                </p>
-                            )} */}
+                        {props.pwdError && (
+                            <p className="error-message">
+                                mot de passe non valide
+                            </p>
+                        )}
                     </label>
                     <br />
                     <input

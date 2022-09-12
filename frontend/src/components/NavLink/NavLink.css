@@ -26,7 +26,7 @@
 
 .burger-icon {
     color: white;
-    background-color: var(--tertiary);
+    background-color: var(--primary);
     font-size: 1.3rem;
     display: none;
     border: none;
@@ -40,7 +40,6 @@
         justify-content: center;
         align-items: center;
         background-color: var(--primary);
-        padding: 20px;
         position: absolute;
         left: 0;
         width: 100%;

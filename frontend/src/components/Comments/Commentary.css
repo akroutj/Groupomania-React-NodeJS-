@@ -9,3 +9,9 @@
 .commentary-user-name {
     margin-right: 10px;
 }
+
+.delete-comment-icon {
+    color: var(--primary);
+    font-size: 0.9rem;
+    margin-left: 10px;
+}

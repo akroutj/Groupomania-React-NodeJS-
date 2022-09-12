@@ -12,10 +12,8 @@ function SignUpComp() {
     const [job, setJob] = useState('')
     const [error, setError] = useState('')
     const [emailErr, setEmailErr] = useState(false)
-    // const [pwdError, setPwdError] = useState(false)
-
+    //const [pwdError, setPwdError] = useState(false)
     const navigate = useNavigate()
-
     const Suscribe = (e) => {
         e.preventDefault()
 
@@ -29,11 +27,7 @@ function SignUpComp() {
         }
         if (!validEmail.test(email)) {
             setEmailErr(true)
-        }
-        // if (!validPassword.test(password)) {
-        //     setPwdError(true)
-        //     console.log('error password')
-        else {
+        } else {
             fetch('http://localhost:3100/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -64,6 +58,7 @@ function SignUpComp() {
                 setJob={setJob}
                 error={error}
                 emailErr={emailErr}
+                //pwdError={pwdError}
                 Suscribe={Suscribe}
             />
         </>

@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     job: { type: String, require: true },
-    profilImage: { type: String, require: true }
+    profilImage: { type: String, require: true },
+    admin: {type: Boolean }
 });
 
 // Application du plugin sur le userShema
