@@ -10,8 +10,9 @@ exports.getAllComments = (req, res, next) => {
 };
 
 exports.getCommentsByMessage = (req, res, next) => {
+  console.log(req.params)
   Comment.find({
-   "messageId": req.params.articleId
+   "messageId": req.params.commentId
  })
     .then(messages => res.status(200).json(messages ))
     .catch(error => res.status(400).json({ error }));
@@ -47,7 +48,7 @@ exports.deleteComment = (req, res) => {
   
  console.log(req.params)
  
-  Comment.deleteOne({ _id: req.params.articleId })
+  Comment.deleteOne({ _id: req.params.commentId })
            .then(() =>  res.status(200).json({ message: 'Commentaire supprimé !' }))
            .catch(error => res.status(400).json({ error }));       
       

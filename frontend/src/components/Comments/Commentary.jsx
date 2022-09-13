@@ -5,7 +5,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 const Commentary = (props) => {
     const deleteOneComment = (e, commentId) => {
         e.preventDefault()
-        console.log(commentId)
+
         const requestOptions = {
             method: 'DELETE',
             headers: {
@@ -19,7 +19,7 @@ const Commentary = (props) => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
-                // window.location.reload()
+                //window.location.reload()
             })
 
             .catch((error) => console.log(error.message))
@@ -29,6 +29,7 @@ const Commentary = (props) => {
         <div className="commentary-container">
             <h3 className="commentary-user-name">{props.comment.name}</h3>
             <p>{props.comment.commentary}</p>
+
             {JSON.parse(localStorage.getItem('userData')).userId ===
                 props.comment.userId || props.myProfil.admin === true ? (
                 <div>

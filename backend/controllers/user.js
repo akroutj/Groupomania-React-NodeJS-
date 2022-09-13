@@ -4,45 +4,22 @@ const User = require('../models/User');
 
 // Création d'un compte utilisateur
 exports.signup = (req, res) => {
-
-// const string = 'key1=value1 key2=value2 key3=multiple values';
-// const regex = /(\w+)=(.*?)(?=(?: \w+=)|$)/g
-
-// let match;
-// while((match =)) {
-//   const [,key, value] = match;
-//   console.log(Key: ${key} - Value: ${value})
-// }
-//  regex.exec(regExText)
-//     // const { name, email, password } = req.body;
-
-   
-//     regex.exec( /^[A-ZÀÂÆÇÉÈÊËÏÎÔŒÙÛÜŸ \'\- ]+$/i;)
-//     const regExText = 
-    // // Validation donnés de l'utilisateur
-    // let isName = validator.matches(String(name), regExText);
-    // let isEmail = validator.isEmail(String(email));
-    // let isPassword = passValid.validate(String(password), options).valid;
-
-    // if ( isName && isEmail && isPassword) {
-        bcrypt.hash(req.body.password, 10)
-            .then(hash => {
-                const user = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: hash,
-                    job: req.body.job,
-                    profilImage: null
-                }
-                
-                );
-
-                user.save()
-                    .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                    .catch(error => res.status(400).json({ error }));
+    bcrypt.hash(req.body.password, 10)
+        .then(hash => {
+            const user = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: hash,
+                job: req.body.job,
+                profilImage: null
+            }        
+        );
+            user.save()
+                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+                .catch(error => res.status(400).json({ error }));
             })
-            .catch(error => res.status(400).json({ error }));
-    };
+        .catch(error => res.status(400).json({ error }));
+};
 
 
 
@@ -79,13 +56,14 @@ exports.users = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+// Récupération du profil
 exports.getMyProfil = (req, res, next) => {
     User.findOne({ _id: req.params.id })
         .then(user => res.status(200).json(user))
         .catch(error => res.status(400).json({ error }));
 };
 
-// Logique metier - Modification du profil
+// Modification du profil
 exports.modifyMyProfil= (req, res) => {
     User.findOne({ _id: req.params.id })
         .then(user => {
@@ -94,14 +72,12 @@ exports.modifyMyProfil= (req, res) => {
                     .then(() => res.status(200).json({ message: 'Photo de profil modifiée !' }))
                     .catch(error => res.status(400).json({ error }));
             } else {
-                res.status(401).json({ message: 'Requête non autorisée !' });
-               
+                res.status(401).json({ message: 'Requête non autorisée !' });    
             }
         }).catch(error => { console.log(error); res.status(400).json({ error }) });
 };
 
 // Supression du profil
-
 exports.deleteMyProfil = (req, res) => {
 
     const token = req.headers.authorization.split(' ')[1];

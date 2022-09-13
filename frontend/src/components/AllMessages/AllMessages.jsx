@@ -10,8 +10,8 @@ const MessagesList = (props) => {
     const [updatePostImg, setUpdatePostImg] = useState(null)
     const [updatePostDescription, setUpdatePostDescription] = useState(null)
     const [settingIsOpen, setSettingIsOpen] = useState(false)
+
     //Modifier un Post
-    console.log('MessagesList', props.updatePostImg)
     const updatePost = (e, messageId) => {
         e.preventDefault()
 

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/white-logo-single.png'
 
 const FormSignUp = (props) => {
-    console.log('formsignup', props.pwdError)
     return (
         <form onSubmit={props.Suscribe} className="form">
             <div className="logo-container">
