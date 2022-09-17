@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -21,8 +22,6 @@ exports.signup = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-
-
 // Connection user
 exports.login = (req, res) => {
     User.findOne({ email: req.body.email })
@@ -40,8 +39,7 @@ exports.login = (req, res) => {
                         token: jwt.sign(
                             { userId: user._id },
                             'RANDOM_TOKEN_SECRET',
-                            { expiresIn: '24h' }
-                            
+                            { expiresIn: '24h' }  
                         ) 
                     });
                 })
@@ -50,6 +48,7 @@ exports.login = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+// Récupération des ultilisateurs
 exports.users = (req, res) => {
     User.find()
         .then(users => res.status(200).json(users))

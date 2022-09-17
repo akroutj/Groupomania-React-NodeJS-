@@ -3,7 +3,6 @@ import Login from '../components/Login/Login'
 import '../styles/Home.css'
 
 function Home(props) {
-    console.log(props)
     return (
         <>
             <div className="home-container">

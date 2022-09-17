@@ -1,5 +1,9 @@
 
+.mon-profil-text{
+    font-size: 3rem;
+    margin-top: 10px;
 
+}
 .profil-card{
     display: flex;
     flex-direction: row;
@@ -12,33 +16,6 @@
     background-color: white;
 }
 
-.form-change-profil {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.text-info {
-    color: white;
-}
-.succes-upload {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 15px;
-}
-
-.cancel-button {
-    margin-top: 15px;
-}
-
-.choice-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .identity-container {
     display: flex;
     flex-direction: column;
@@ -48,10 +25,51 @@
     contain: content
 }
 
+.form-change-profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.update-image-icon {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-top: 15px;
+}
+
+.edit-icon-profil {
+    margin-right: 10px;
+}
+
+.succes-upload {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+}
+
+.text-info {
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+.choice-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-button {
+    margin-top: 15px;
+}
+
 .profil-photo-card {
     max-height: 200px;
     padding: 20px;
-    
+
 }
 
 .profil-photo {
@@ -59,11 +77,10 @@
     border-radius: 50%;
 }
 
-.update-image-icon {
+.profil-main-card {
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
     font-size: 1.2rem;
-    color: var(--primary);
-    margin-top: 15px;
-
 }
 
 .info-card {
@@ -75,13 +92,6 @@
 
 .info-card p:hover {
     cursor: pointer;
-    background-color: aqua;
-}
-
-.profil-main-card {
-   width: 100%;
-   border-radius: 0px 0px 20px 20px;
-   font-size: 1.2rem;
 }
 
 .profil-buttons {
@@ -89,8 +99,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;   
 }
 
 .profil-buttons button {

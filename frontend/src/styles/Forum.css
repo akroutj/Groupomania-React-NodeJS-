@@ -6,3 +6,31 @@ align-items: center;
 justify-content: center;
 }
 
+.title-forum-container {
+    background-color: white;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px grey; 
+    margin-top: 100px;
+}
+
+.title-forum {
+    font-size: 3rem;
+}
+
+@media only screen and (max-device-width : 760px) {
+
+    .title-forum-container {
+        
+            width: 80%;
+        }
+    
+    .title-forum {
+            font-size: 2rem;
+    }
+}
+

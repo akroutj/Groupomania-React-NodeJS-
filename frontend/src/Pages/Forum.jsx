@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../components/Header/Header'
-
 import PostMessage from '../components/PostMessage/PostMessage'
 import AllMessages from '../components/AllMessages/AllMessages'
-
 import '../styles/Forum.css'
 
 function Forum(props) {
     const [messages, setMessages] = useState([])
+
     useEffect(() => {
         setMessages(messages)
     }, [messages])
 
     useEffect(() => {
-        // props.setIsLoaded(true)
         const requestOptions = {
             Authorization:
                 'Bearer ' + JSON.parse(localStorage.getItem('userData')).token,
@@ -24,14 +22,18 @@ function Forum(props) {
             .then((data) => {
                 setMessages(data)
             })
-        // props.setIsLoaded(false)
     }, [])
+
     return (
         <>
             {messages ? (
                 <>
                     <Header />
+
                     <div className="forum-container">
+                        <div className="title-forum-container">
+                            <h1 className="title-forum">Fil d'actualité</h1>
+                        </div>
                         <PostMessage myProfil={props.myProfil} />
 
                         <AllMessages

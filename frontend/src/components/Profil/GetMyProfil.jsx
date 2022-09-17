@@ -11,14 +11,11 @@ const GetMyProfil = (props) => {
     //Mofification de la photo de profil
     const modifyImage = (e) => {
         e.preventDefault()
-        console.log('ça marche')
-
         const formData = new FormData()
         formData.append(
             'image',
             updateProfilImg !== null ? updateProfilImg[0] : null
         )
-
         const requestOptions = {
             method: 'PUT',
             headers: {
@@ -28,7 +25,6 @@ const GetMyProfil = (props) => {
             },
             body: formData,
         }
-
         fetch(
             'http://localhost:3100/api/auth/profil/' +
                 JSON.parse(localStorage.getItem('userData')).userId,
@@ -60,17 +56,25 @@ const GetMyProfil = (props) => {
             requestOptions
         )
             .then((response) => response.json())
-            .then((data) => console.log(data), navigate('/'))
+            .then(
+                (data) => console.log(data),
+                navigate('/'),
+                localStorage.clear()
+            )
+
             .catch((error) => console.log(error.message))
     }
 
     return (
         <div className="profil-card">
             <div className="identity-container">
+                <h1 className="mon-profil-text">Mon profil</h1>
                 <form className="form-change-profil" onSubmit={modifyImage}>
                     {updateProfilImg === null && (
                         <label htmlFor="file" className="update-image-icon">
                             <input
+                                aria-label="labelChangeProfil"
+                                aria-required="true"
                                 type="file"
                                 id="file"
                                 name="update-image-icon"
@@ -78,7 +82,8 @@ const GetMyProfil = (props) => {
                                     setUpdateProfilImg(e.target.files)
                                 }}
                             />
-                            <FaPen />
+                            <FaPen className="edit-icon-profil" />
+                            Editer
                         </label>
                     )}
                     {updateProfilImg !== null && (
@@ -120,15 +125,15 @@ const GetMyProfil = (props) => {
 
                 <div className="profil-main-card">
                     <form className="info-card">
-                        <p className="text-info">
-                            <strong>Nom : </strong> {props.myProfil.name}
-                        </p>
-                        <p className="text-info">
-                            <strong>Job : </strong> {props.myProfil.job}
-                        </p>
-                        <p className="text-info">
-                            <strong>Email : </strong> {props.myProfil.email}
-                        </p>
+                        <h2 className="text-info">
+                            Nom :{props.myProfil.name}
+                        </h2>
+                        <h2 className="text-info">
+                            Job : {props.myProfil.job}
+                        </h2>
+                        <h2 className="text-info">
+                            Email : {props.myProfil.email}
+                        </h2>
                     </form>
                     <div className="profil-buttons">
                         <button

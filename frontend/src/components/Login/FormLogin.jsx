@@ -10,6 +10,9 @@ const FormLogin = (props) => {
             </label>
             <br />
             <input
+                aria-label="labelTextEmail"
+                aria-required="true"
+                id="email"
                 className="input"
                 type="email"
                 placeholder="email"
@@ -24,7 +27,10 @@ const FormLogin = (props) => {
                 </label>
                 <br />
                 <input
+                    aria-label="labelTextPassword"
+                    aria-required="true"
                     className="input"
+                    id="password"
                     type="password"
                     placeholder=" Mot de passe"
                     name="password"
@@ -38,7 +44,10 @@ const FormLogin = (props) => {
                 </label>
                 <br />
                 <input
+                    aria-label="labelTextConfirmationPassword"
+                    aria-required="true"
                     className="input"
+                    id="password-validation"
                     type="password"
                     onChange={(e) =>
                         props.setPasswordConfirmation(e.target.value)
@@ -47,9 +56,7 @@ const FormLogin = (props) => {
                     name="password-validation"
                 />
             </div>
-
             <p>{props.error}</p>
-
             <button className="submit" type="submit">
                 Connexion
             </button>

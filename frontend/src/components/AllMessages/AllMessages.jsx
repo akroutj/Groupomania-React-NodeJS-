@@ -14,15 +14,11 @@ const MessagesList = (props) => {
     //Modifier un Post
     const updatePost = (e, messageId) => {
         e.preventDefault()
-
-        console.log(e.target.value)
         const formData = new FormData()
-
         formData.append(
             'image',
             updatePostImg !== null ? updatePostImg[0] : null
         )
-
         formData.append('message', updatePostDescription)
 
         const requestOptions = {
@@ -34,7 +30,6 @@ const MessagesList = (props) => {
             },
             body: formData,
         }
-
         fetch('http://localhost:3100/api/messages/' + messageId, requestOptions)
             .then((response) => response.json())
             .then((data) => {
@@ -52,7 +47,6 @@ const MessagesList = (props) => {
                 userLiked ===
                 JSON.parse(localStorage.getItem('userData')).userId
         )
-
         let formData = {}
         if (userLikedFilter.length === 0) {
             formData = {
@@ -117,7 +111,6 @@ const MessagesList = (props) => {
             messageId: message._id,
             name: props.myProfil.name,
         }
-
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -151,16 +144,22 @@ const MessagesList = (props) => {
                                 <img
                                     className="card-image"
                                     src={message.imageUrl}
-                                    alt="Teamphoto"
+                                    alt={
+                                        props.messages.length !== 0 &&
+                                        props.messages.filter(
+                                            (message) =>
+                                                message.name +
+                                                ' photo de profil'
+                                        )
+                                    }
                                 />
                             </div>
                         )}
 
-                        {/* MODIFICATION DU POST */}
-
                         <div>
                             {JSON.parse(localStorage.getItem('userData'))
-                                .userId === message.userId ? (
+                                .userId === message.userId ||
+                            props.myProfil.admin === true ? (
                                 <div className="modify-post-container">
                                     <button
                                         className="modify-post-button"
@@ -180,6 +179,7 @@ const MessagesList = (props) => {
                                             settingIsOpen={setSettingIsOpen}
                                             updatePost={updatePost}
                                             updatePostImg={updatePostImg}
+                                            myProfil={props.myProfil}
                                         />
                                     ) : (
                                         ''
@@ -192,7 +192,6 @@ const MessagesList = (props) => {
 
                         <div className="card-description">
                             <p>{message.message}</p>
-
                             <div className="like-container">
                                 <FaHeart
                                     className="heart-icon"
@@ -203,7 +202,6 @@ const MessagesList = (props) => {
                                 <p>{message.likes}</p>
                             </div>
                         </div>
-
                         <hr className="line"></hr>
 
                         <CommentsList
@@ -217,7 +215,12 @@ const MessagesList = (props) => {
                             className="card-commentary"
                         >
                             <div className="commentaries-container">
-                                <label htmlFor="commentary"></label>
+                                <label
+                                    htmlFor="commentary"
+                                    className="commentez"
+                                >
+                                    Commentez
+                                </label>
                                 <input
                                     type="text"
                                     name="commentary"

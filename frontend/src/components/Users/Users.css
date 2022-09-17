@@ -7,6 +7,22 @@
     padding-top: 100px;
 }
 
+.users-title-text-container {
+    background-color: white;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px gray;
+}
+
+.users-title-text {
+    color: var(--primary);
+    font-size: 3rem;
+}
+
 .users-card {
     display: flex;
     flex-direction: row;
@@ -16,11 +32,8 @@
     box-shadow: 0px 5px 10px gray;
     padding: 20px;
     margin-top: 20px;
-    background-color: white;
-   
+    background-color: white;  
 }
-
-
 
 .admin-users-container {
     display: flex;
@@ -39,6 +52,14 @@
 
     .users-card {
         width: 80%;
+    }
+
+    .users-title-text-container {
+        width: 70%; 
+    }
+
+    .users-title-text {
+        font-size: 2.5rem;
     }
 }
 

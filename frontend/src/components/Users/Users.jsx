@@ -3,9 +3,11 @@ import './Users.css'
 import { FaStar } from 'react-icons/fa'
 
 function UsersList(props) {
-    console.log(props.users.name)
     return (
         <div className="users-container">
+            <div className="users-title-text-container">
+                <h1 className="users-title-text">Utilisateurs</h1>
+            </div>
             {props.users.length !== 0 &&
                 props.users.map((user, index) => (
                     <div className="users-card" key={index}>
@@ -17,11 +19,11 @@ function UsersList(props) {
                                         ? user.profilImage
                                         : require('../../../src/assets/red-logo-single.png')
                                 }
-                                alt="profil"
+                                alt={'Photo de profil ' + user.name}
                             />
                         </div>
                         <div className="name-card">
-                            <h3 className="name-user">{user.name}</h3>
+                            <h2 className="name-user">{user.name}</h2>
                             <p className="job-user">{user.job}</p>
                         </div>
                         <div>

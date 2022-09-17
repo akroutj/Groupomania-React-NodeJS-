@@ -1,15 +1,8 @@
 
 const express = require('express');
-
-// Mise en place du router
 const router = express.Router();
-
-// Mise en place d'un middleware d'authentification
 const auth = require('../middleware/auth');
-
 const multer = require('../middleware/multer-config');
-
-// Récupération des controllers sauces
 const messageCtrl = require('../controllers/message');
 
 // CRUD

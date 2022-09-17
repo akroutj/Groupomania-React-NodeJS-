@@ -13,7 +13,6 @@ const CommentsList = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 setComments(data)
-                console.log(data)
             })
     }, [props.messageId])
 

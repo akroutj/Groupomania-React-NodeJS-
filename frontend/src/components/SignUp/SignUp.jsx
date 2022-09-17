@@ -12,7 +12,6 @@ function SignUpComp() {
     const [job, setJob] = useState('')
     const [error, setError] = useState('')
     const [emailErr, setEmailErr] = useState(false)
-    //const [pwdError, setPwdError] = useState(false)
     const navigate = useNavigate()
     const Suscribe = (e) => {
         e.preventDefault()
@@ -49,7 +48,7 @@ function SignUpComp() {
             <div className="signup-container"></div>
             <div className="home-presentation">
                 <h1>Bienvenue</h1>
-                <h3>sur le réseau social de l'entreprise</h3>
+                <h2>sur le réseau social de l'entreprise</h2>
             </div>
             <FormSignUp
                 setName={setName}
@@ -58,7 +57,6 @@ function SignUpComp() {
                 setJob={setJob}
                 error={error}
                 emailErr={emailErr}
-                //pwdError={pwdError}
                 Suscribe={Suscribe}
             />
         </>

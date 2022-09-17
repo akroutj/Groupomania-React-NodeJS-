@@ -10,7 +10,6 @@ function Login(props) {
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [error, setError] = useState('')
-
     const navigate = useNavigate()
 
     const LoginValidation = (e) => {
@@ -53,7 +52,7 @@ function Login(props) {
         <div className="login-container">
             <div className="home-presentation">
                 <h1>Bienvenue</h1>
-                <h3>sur le réseau social de l'entreprise</h3>
+                <h2>sur le réseau social de l'entreprise</h2>
             </div>
 
             <div className="logo-container">

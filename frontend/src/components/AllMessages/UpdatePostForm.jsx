@@ -1,7 +1,6 @@
 import { FaRegCheckCircle, FaCamera } from 'react-icons/fa'
 
 const UpdatePostForm = (props) => {
-    console.log('zefzef', props.updatePostImg)
     return (
         <form
             className="form-update-post"
@@ -40,6 +39,7 @@ const UpdatePostForm = (props) => {
 
             <label htmlFor="update-description" className="update-description">
                 <input
+                    aria-label="labelUpdateDescription"
                     className="input-update-description"
                     type="text"
                     placeholder="    Changer la description"
@@ -48,6 +48,7 @@ const UpdatePostForm = (props) => {
                         props.setUpdatePostDescription(e.target.value)
                     }}
                 />
+                Votre description
             </label>
         </form>
     )

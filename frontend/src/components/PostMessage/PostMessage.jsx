@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { FaCamera, FaRegCheckCircle } from 'react-icons/fa'
-// import GetMyProfil from '../Profil/GetMyProfil'
-
 import './PostMessage.css'
 
 function PostMessage(props) {
@@ -10,8 +8,6 @@ function PostMessage(props) {
 
     const sendMessage = () => {
         const date = new Date().toUTCString()
-        console.log(date)
-
         const formData = new FormData()
         formData.append('image', selectImage !== null ? selectImage[0] : null)
         formData.append('message', message)
@@ -53,7 +49,7 @@ function PostMessage(props) {
                         />
                     </div>
                     <div className="name-card">
-                        <h3 className="name-user">{props.myProfil.name}</h3>
+                        <h2 className="name-user">{props.myProfil.name}</h2>
                         <p className="job-user">{props.myProfil.job}</p>
                     </div>
                 </div>
@@ -63,6 +59,8 @@ function PostMessage(props) {
                         {selectImage === null && (
                             <label htmlFor="file" className="file-image">
                                 <input
+                                    aria-label="labelFileImage"
+                                    aria-required="true"
                                     type="file"
                                     id="file"
                                     name="myImage"
@@ -85,11 +83,12 @@ function PostMessage(props) {
                         )}
                     </div>
                     <div className="post-comments-area">
-                        <label
-                            className="text-area-message"
-                            htmlFor="message"
-                        ></label>
+                        <label className="text-area-message" htmlFor="message">
+                            Description
+                        </label>
                         <textarea
+                            aria-label="labelDescriptionImage"
+                            aria-required="true"
                             type="text"
                             className="message"
                             name="message"

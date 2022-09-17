@@ -13,11 +13,14 @@ const FormSignUp = (props) => {
                 <div className="pseudo-container"></div>
                 <label htmlFor="name">
                     <FaUserCircle className="user-icon" />
-                    Name
+                    Nom
                 </label>
                 <br />
                 <input
+                    aria-label="labelTextName"
+                    aria-required="true"
                     className="input"
+                    id="name"
                     type="text"
                     placeholder=" Name"
                     name="name"
@@ -34,8 +37,11 @@ const FormSignUp = (props) => {
                 </label>
                 <br />
                 <input
+                    aria-label="labelTextEmail"
+                    aria-required="true"
                     className="input"
                     type="email"
+                    id="email"
                     placeholder=" email"
                     name="email"
                     onChange={(e) => props.setEmail(e.target.value)}
@@ -53,8 +59,11 @@ const FormSignUp = (props) => {
                     </label>
                     <br />
                     <input
+                        aria-label="labelTextPassword"
+                        aria-required="true"
                         className="input"
                         type="password"
+                        id="password"
                         placeholder=" Mot de passe"
                         name="password"
                         onChange={(e) => props.setPassword(e.target.value)}
@@ -68,7 +77,10 @@ const FormSignUp = (props) => {
 
                     <br />
                     <input
+                        aria-label="labelTextJob"
+                        aria-required="true"
                         className="input"
+                        id="job"
                         type="text"
                         placeholder=" Job"
                         name="job"

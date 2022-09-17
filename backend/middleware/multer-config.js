@@ -1,6 +1,8 @@
+
 // Importation du package multer
 const multer = require('multer');
 const path = require("path")
+
 // Séléction des format acceptés
 const MIME_TYPES = {
     'image/jpg': 'jpg',

@@ -7,13 +7,20 @@
     flex-wrap: wrap;
 }
 
+.burger-icon {
+    color: white;
+    background-color: var(--primary);
+    font-size: 1.3rem;
+    display: none;
+    border: none;
+}
+
 .navlink, .profil-icon {
     text-decoration: none;
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     padding-left: 40px;
     transition: 300ms ;
-    
 }
 
 .profil-icon {
@@ -24,15 +31,7 @@
     transform: scale(1.05);
 }
 
-.burger-icon {
-    color: white;
-    background-color: var(--primary);
-    font-size: 1.3rem;
-    display: none;
-    border: none;
-}
-
- @media only screen and (max-device-width : 770px) {
+ @media only screen and (max-device-width : 810px) {
 
     .navigation-links-mobile {
         display: flex;
@@ -61,10 +60,6 @@
     .burger-icon {
         display:flex;
     }
-    
-
-   
-
  }
 
       

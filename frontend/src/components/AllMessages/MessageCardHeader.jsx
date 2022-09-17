@@ -20,11 +20,19 @@ const MessageCardHeader = (props) => {
                                   )[0].profilImage
                                 : require('../../../src/assets/red-logo-single.png')
                         }
-                        alt="Visage de la personne"
+                        alt={
+                            props.users.length !== 0 &&
+                            props.users.filter(
+                                (user) => user._id === props.message.userId
+                            ).length !== 0 &&
+                            props.users.filter(
+                                (user) => user._id === props.message.userId
+                            )[0].name + ' photo de profil'
+                        }
                     />
                 </div>
                 <div className="identity-name-and-job">
-                    <h3 className="user-name">
+                    <h2 className="user-name">
                         {props.users.length !== 0 &&
                             props.users.filter(
                                 (user) => user._id === props.message.userId
@@ -32,7 +40,7 @@ const MessageCardHeader = (props) => {
                             props.users.filter(
                                 (user) => user._id === props.message.userId
                             )[0].name}
-                    </h3>
+                    </h2>
 
                     <p className="user-job">
                         {props.users.length !== 0 &&

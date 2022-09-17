@@ -1,21 +1,18 @@
-// Récuperation du schema pour les messages
+
 const Message = require('../models/Message');
 const Comment = require('../models/Comment');
-
-const jwt = require('jsonwebtoken');
 
 // Récuperation du package FileSystem
 const fs = require('fs');
 
-// Logique metier - Récupération de toutes les messages
+// Récupération de toutes les messages
 exports.getAllMessages = (req, res, next) => {
      Message.find().sort({date: -1})
     .then(messages => res.status(200).json(messages))
     .catch(error => res.status(400).json({ error }));
 };
 
-
-// Logique metier - Création d'un message
+// Création d'un message
 exports.createMessage = (req, res) => {
     const message = new Message({
         ...req.body,
@@ -26,7 +23,7 @@ exports.createMessage = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-// Logique metier - Modification d'un message
+// Modification d'un message
 exports.modifyMessage = (req, res) => {
     Message.updateOne(
         { _id: req.params.id },
@@ -42,7 +39,7 @@ exports.modifyMessage = (req, res) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-// Logique metier - Suppression d'un message
+// Suppression d'un message
 exports.deleteMessage = (req, res) => {
     Message.findOne({ _id: req.params.id })
         .then(message => {
@@ -57,7 +54,7 @@ exports.deleteMessage = (req, res) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-// Logique metier - Likes & Dislikes
+// Likes & Dislikes
 exports.likeMessage = (req, res) => {
 
     let like = req.body.like;

@@ -18,12 +18,13 @@ function NavLink() {
         <>
             <div className="navigation">
                 <button
+                    aria-label="burger"
                     className="burger-icon"
+                    id="burger"
                     onClick={() => setIsMobile(!isMobile)}
                 >
                     {isMobile ? <FaBars /> : <FaTimes />}
                 </button>
-
                 <div
                     className={
                         isMobile
@@ -42,7 +43,6 @@ function NavLink() {
                         Utilisateurs
                     </Link>
                 </div>
-
                 <FaPowerOff onClick={Logout} className="profil-icon" />
             </div>
         </>

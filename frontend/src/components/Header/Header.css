@@ -15,7 +15,7 @@
     height: 60px;
 }
 
-@media only screen and (max-device-width : 770px) {
+@media only screen and (max-device-width : 810px) {
 
     .header-logo {
             height: 40px;

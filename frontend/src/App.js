@@ -7,21 +7,16 @@ import SignUp from './Pages/SignUp'
 import Forum from './Pages/Forum'
 import Users from './Pages/Users'
 import Profil from './Pages/Profil'
-// const override = {
-//     display: 'block',
-//     margin: '0 auto',
-//     borderColor: 'red',
-// }
-const App = () => {
-    // Récuperation du token dans le Local Storage
 
+const App = () => {
     const [users, setUsers] = useState([])
     const [messages, setMessages] = useState([])
+    const [myProfil, setMyProfil] = useState([])
+    const [isLoaded, setIsLoaded] = useState(false)
+
     useEffect(() => {
         setMessages(messages)
     }, [messages])
-    const [myProfil, setMyProfil] = useState([])
-    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         setIsLoaded(true)
@@ -54,6 +49,7 @@ const App = () => {
         }
         setIsLoaded(false)
     }, [isLoaded])
+
     if (isLoaded) {
         return <SpinnerCircular enabled={true} />
     }
