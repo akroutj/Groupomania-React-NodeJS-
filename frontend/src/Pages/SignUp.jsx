@@ -5,14 +5,14 @@ import '../styles/Home.css'
 function SignUp() {
     return (
         <>
-            <div className="home-container">
+            <main className="home-container">
                 <div className="home-form-container">
                     <SignUpComp />
                 </div>
                 <div className="home-image-container">
                     <img className="red-logo" alt="" src={RedLogo} />
                 </div>
-            </div>
+            </main>
         </>
     )
 }

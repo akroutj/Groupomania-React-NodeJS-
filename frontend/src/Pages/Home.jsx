@@ -5,7 +5,7 @@ import '../styles/Home.css'
 function Home(props) {
     return (
         <>
-            <div className="home-container">
+            <main className="home-container">
                 <div className="home-form-container">
                     <Login setIsLoaded={props.setIsLoaded} />
                 </div>
@@ -16,7 +16,7 @@ function Home(props) {
                         src={RedLogo}
                     />
                 </div>
-            </div>
+            </main>
         </>
     )
 }

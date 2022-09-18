@@ -30,7 +30,7 @@ function Forum(props) {
                 <>
                     <Header />
 
-                    <div className="forum-container">
+                    <main className="forum-container">
                         <div className="title-forum-container">
                             <h1 className="title-forum">Fil d'actualité</h1>
                         </div>
@@ -43,7 +43,7 @@ function Forum(props) {
                             myProfil={props.myProfil}
                             comments={props.comments}
                         />
-                    </div>
+                    </main>
                 </>
             ) : null}
         </>

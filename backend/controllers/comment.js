@@ -1,7 +1,6 @@
 
 const Comment = require("../models/Comment");
 
-
 // Récupération de tout les commentaires
 exports.getAllComments = (req, res, next) => {
 

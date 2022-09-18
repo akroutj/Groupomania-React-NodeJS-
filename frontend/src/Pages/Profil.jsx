@@ -7,9 +7,9 @@ function Profil(props) {
     return (
         <>
             <Header />
-            <div className="profil-container">
+            <main className="profil-container">
                 <GetMyProfil myProfil={props.myProfil} />
-            </div>
+            </main>
         </>
     )
 }

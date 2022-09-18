@@ -145,12 +145,15 @@ const MessagesList = (props) => {
                                     className="card-image"
                                     src={message.imageUrl}
                                     alt={
-                                        props.messages.length !== 0 &&
-                                        props.messages.filter(
-                                            (message) =>
-                                                message.name +
-                                                ' photo de profil'
-                                        )
+                                        props.users.length !== 0 &&
+                                        props.users.filter(
+                                            (user) =>
+                                                user._id === message.userId
+                                        ).length !== 0 &&
+                                        props.users.filter(
+                                            (user) =>
+                                                user._id === message.userId
+                                        )[0].name + ' photo de son post'
                                     }
                                 />
                             </div>
@@ -215,16 +218,12 @@ const MessagesList = (props) => {
                             className="card-commentary"
                         >
                             <div className="commentaries-container">
-                                <label
-                                    htmlFor="commentary"
-                                    className="commentez"
-                                >
-                                    Commentez
-                                </label>
                                 <input
+                                    aria-label="labelCommentary"
+                                    aria-required="true"
+                                    className="commentary"
                                     type="text"
                                     name="commentary"
-                                    id="commentary"
                                     placeholder="Ecrire un commentaire..."
                                     onChange={(e) =>
                                         setCommentary(e.target.value)

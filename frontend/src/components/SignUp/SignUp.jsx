@@ -45,20 +45,17 @@ function SignUpComp() {
 
     return (
         <>
-            <div className="signup-container"></div>
-            <div className="home-presentation">
-                <h1>Bienvenue</h1>
-                <h2>sur le réseau social de l'entreprise</h2>
+            <div className="signup-container">
+                <FormSignUp
+                    setName={setName}
+                    setEmail={setEmail}
+                    setPassword={setPassword}
+                    setJob={setJob}
+                    error={error}
+                    emailErr={emailErr}
+                    Suscribe={Suscribe}
+                />
             </div>
-            <FormSignUp
-                setName={setName}
-                setEmail={setEmail}
-                setPassword={setPassword}
-                setJob={setJob}
-                error={error}
-                emailErr={emailErr}
-                Suscribe={Suscribe}
-            />
         </>
     )
 }
