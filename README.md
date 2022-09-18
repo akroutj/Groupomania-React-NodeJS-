@@ -15,7 +15,7 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 ### Créez un dossier et entrez dedans
 
-`$ Ouvrir votre terminal de commandes`
+* Ouvrir votre terminal de commande
 
 `$ mkdir "nom_du_dossier"`
 
@@ -25,7 +25,7 @@ Le projet consiste à construire un réseau social interne pour les employés de
 
 `$ git clone https://github.com/akroutj/Social-Network.git`
 
-`$ Ouvrir le dossier dans votre éditeur de texte`
+* Ouvrir le dossier dans votre éditeur de texte
 
 ## Backend :
 
